@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Tony Tunado &middot; Manual de Operação e Desenvolvimento</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="cover">
+  <div class="left">
+    <img class="logo" src="images/apex_logo.png">
+    <div class="kicker">Manual de Operação e Desenvolvimento</div>
+    <h1>Apex Team</h1>
+    <div class="rule"></div>
+    <div class="subtitle">Veículo autônomo em escala &middot; Desafio Mercedes-Benz 2026</div>
+    <div class="team">
+      <span class="role">Apex Team &middot; Engenharia Mecatrônica 4º Ano &middot; FIAP</span>
+      Danilo Augusto &nbsp;RM 97810<br>
+      Gabriel Rocha &nbsp;RM 552552<br>
+      Gabriel Tadashi &nbsp;RM 551722<br>
+      Guilherme Renovato &nbsp;RM 551712<br>
+      Leonardo Martins &nbsp;RM 99537
+    </div>
+    <div class="meta">
+      <b>FIAP</b> · Faculdade de Informática e Administração Paulista<br>
+      Desafio Mercedes-Benz 2026 &middot; Campus Aclimação &middot; São Paulo – SP
+    </div>
+  </div>
+  <div class="right"><img src="images/cover_car_new.png"></div>
+  <div class="foot"><span>APEX-001-2026</span></div>
+</div><div class="page" id="sec-sumario">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item active" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Sumário</div>
+        </div>
+        <div class="main"><h1 class="pt">Sumário</h1><div class="pt-rule"></div><p class="lead">Este manual de operação e desenvolvimento descreve todas as funções e componentes do veículo autônomo Tony Tunado, desenvolvido como resposta ao desafio proposto pela Mercedes-Benz ao 4º ano de Engenharia Mecatrônica da FIAP em 2026.</p><div class="idx-grid"><a class="idx-card" href="#sec-partida"><div class="n">SEÇÃO 01</div><div class="t">Início</div><div class="p">P. 03</div></a><a class="idx-card" href="#sec-processamento"><div class="n">SEÇÃO 02</div><div class="t">Processamento</div><div class="p">P. 05</div></a><a class="idx-card" href="#sec-propulsao"><div class="n">SEÇÃO 03</div><div class="t">Propulsão</div><div class="p">P. 07</div></a><a class="idx-card" href="#sec-direcao"><div class="n">SEÇÃO 04</div><div class="t">Direção</div><div class="p">P. 09</div></a><a class="idx-card" href="#sec-sensores"><div class="n">SEÇÃO 05</div><div class="t">Sensores</div><div class="p">P. 11</div></a><a class="idx-card" href="#sec-energia"><div class="n">SEÇÃO 06</div><div class="t">Energia</div><div class="p">P. 13</div></a><a class="idx-card" href="#sec-comunicacao"><div class="n">SEÇÃO 07</div><div class="t">Comunicação</div><div class="p">P. 15</div></a><a class="idx-card" href="#sec-software"><div class="n">SEÇÃO 08</div><div class="t">Software</div><div class="p">P. 17</div></a><a class="idx-card" href="#sec-pecas"><div class="n">SEÇÃO 09</div><div class="t">Peças Mecânicas</div><div class="p">P. 23</div></a><a class="idx-card" href="#sec-fmea"><div class="n">SEÇÃO 10</div><div class="t">FMEA</div><div class="p">P. 25</div></a><a class="idx-card" href="#sec-pert"><div class="n">SEÇÃO 11</div><div class="t">PERT / CPM</div><div class="p">P. 27</div></a><a class="idx-card" href="#sec-dados"><div class="n">SEÇÃO 12</div><div class="t">Dados Técnicos</div><div class="p">P. 29</div></a></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">02 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-partida">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item active" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Início</div>
+        </div>
+        <div class="main"><h1 class="pt">Início</h1><div class="pt-rule"></div><p class="lead">Bem-vindo ao Tony Tunado</p><p class="lead">O Tony Tunado é um veículo autônomo em escala desenvolvido pela Apex Team · time de alunos do 4º ano de Engenharia Mecatrônica da FIAP · como resposta ao desafio proposto pela Mercedes-Benz em 2026. O projeto integra visão computacional, inteligência artificial, controle embarcado, manufatura CNC e impressão 3D.</p><h2 class="st">O veículo é capaz de:</h2><ul class="checklist">
+  <li>Seguir autonomamente uma pista delimitada por faixas laterais brancas</li>
+  <li>Detectar e interpretar placas de sinalização viária (modelo YOLO)</li>
+  <li>Identificar pedestres e obstáculos via 4 sensores ultrassônicos HC-SR04</li>
+  <li>Realizar missões de entrega autônoma ponto a ponto</li>
+  <li>Comunicar subsistemas via protocolo CAN J1939 · padrão automotivo SAE</li>
+</ul><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">O código-fonte do sistema de visão computacional roda em Python no notebook e se comunica com o Arduino Mega via serial USB a 115.200 bps. Os firmwares dos ATmegas são desenvolvidos em C++ via CAN 2.0B / J1939 a 250 kbps.</div></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">03 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item active" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Início</div>
+        </div>
+        <div class="main"><h1 class="pt">Arquitetura Geral</h1><div class="pt-rule"></div><p class="lead">Resumo das principais funcionalidades do Tony Tunado para orientação rápida do operador.</p><div class="diagram-panel">
+      <div class="dtitle">ARQUITETURA GERAL DO SISTEMA</div>
+      <svg viewBox="0 0 1000 276" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;"><defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#256a8f"/>
+  </marker>
+  <marker id="arrowSilver" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#8b959d"/>
+  </marker>
+</defs><rect x="40" y="46" width="118" height="56" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="99.0" y="73.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13" fill="#181e24">Câmera USB</text><text x="99.0" y="88.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#5b6670">Fisheye 160°</text><rect x="250" y="46" width="148" height="56" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="324.0" y="73.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13" fill="#181e24">Notebook</text><text x="324.0" y="88.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#5b6670">Python 3 · OpenCV</text><rect x="520" y="46" width="148" height="56" rx="6" fill="#123a56" stroke="#256a8f" stroke-width="1.3"/><text x="594.0" y="73.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13" fill="#f5f8fa">Arduino Mega</text><text x="594.0" y="88.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#bcd9e9">ATmega2560 · Mestre</text><line x1="158" y1="74.0" x2="250" y2="74.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><text x="204.0" y="66.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">USB</text><line x1="398" y1="74.0" x2="520" y2="74.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><text x="459.0" y="66.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">Serial 115.200 bps</text><line x1="594.0" y1="102" x2="594.0" y2="168" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><text x="594.0" y="127.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">CAN 2.0B / J1939 · 250 kbps</text><line x1="120" y1="168" x2="900" y2="168" stroke="#256a8f" stroke-width="2"/><circle cx="120" cy="168" r="3" fill="#256a8f"/><circle cx="900" cy="168" r="3" fill="#256a8f"/><line x1="179.0" y1="168" x2="179.0" y2="210" stroke="#8b959d" stroke-width="1.3"/><circle cx="179.0" cy="168" r="2.6" fill="#256a8f"/><rect x="120" y="210" width="118" height="54" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="179.0" y="232" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11" fill="#181e24">PCB Motores</text><text x="179.0" y="245" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11" fill="#181e24">Traseiros</text><text x="179.0" y="256" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">SA 0x10</text><line x1="321.0" y1="168" x2="321.0" y2="210" stroke="#8b959d" stroke-width="1.3"/><circle cx="321.0" cy="168" r="2.6" fill="#256a8f"/><rect x="262" y="210" width="118" height="54" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="321.0" y="232" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11" fill="#181e24">PCB Motores</text><text x="321.0" y="245" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11" fill="#181e24">Dianteiros</text><text x="321.0" y="256" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">SA 0x11</text><line x1="463.0" y1="168" x2="463.0" y2="210" stroke="#8b959d" stroke-width="1.3"/><circle cx="463.0" cy="168" r="2.6" fill="#256a8f"/><rect x="404" y="210" width="118" height="54" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="463.0" y="232" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11" fill="#181e24">PCB Sinalização</text><text x="463.0" y="256" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">SA 0x20</text><line x1="605.0" y1="168" x2="605.0" y2="210" stroke="#8b959d" stroke-width="1.3"/><circle cx="605.0" cy="168" r="2.6" fill="#256a8f"/><rect x="546" y="210" width="118" height="54" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="605.0" y="232" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11" fill="#181e24">PCB Encoders</text><text x="605.0" y="256" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">SA 0x30</text><line x1="747.0" y1="168" x2="747.0" y2="210" stroke="#8b959d" stroke-width="1.3"/><circle cx="747.0" cy="168" r="2.6" fill="#256a8f"/><rect x="688" y="210" width="118" height="54" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="747.0" y="232" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11" fill="#181e24">PCB Ultrassônicos</text><text x="747.0" y="256" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">SA 0x40</text><line x1="889.0" y1="168" x2="889.0" y2="210" stroke="#8b959d" stroke-width="1.3"/><circle cx="889.0" cy="168" r="2.6" fill="#256a8f"/><rect x="830" y="210" width="118" height="54" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="889.0" y="232" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11" fill="#181e24">PCB BMS</text><text x="889.0" y="256" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">SA 0x50</text></svg>
+    </div><table class="spec compact"><colgroup><col style="width:16%"><col style="width:56%"><col style="width:28%"></colgroup><thead><tr><th>Etapa</th><th>Descrição</th><th>Componente</th></tr></thead><tbody><tr><td>1. Captura</td><td>Câmera fisheye 160° captura a pista em tempo real</td><td>Câmera USB</td></tr><tr><td>2. Processamento</td><td>OpenCV: bird's eye view, binarização, detecção de faixas</td><td>Notebook / Python</td></tr><tr><td>3. Cálculo do erro</td><td>Desvio do centro da pista calculado pelo algoritmo</td><td>PID – Python</td></tr><tr><td>4. Transmissão</td><td>Ângulo de correção via Serial 115.200 bps</td><td>PySerial</td></tr><tr><td>5. CAN J1939</td><td>Mega repassa comandos ao barramento a 250 kbps</td><td>Arduino Mega</td></tr><tr><td>6. Atuação</td><td>Servo corrige direção; RS550 ajusta velocidade</td><td>ATmegas + BTS7960</td></tr><tr><td>7. Monitoramento</td><td>HC-SR04 detectam obstáculos; Hall mede velocidade</td><td>ATmegas dedicados</td></tr></tbody></table><h2 class="st">Dicas antes de ligar</h2><ul class="checklist">
+  <li>Certifique-se de que a bateria LiFePO4 está carregada (BMS-40A-4S deve estar em estado normal)</li>
+  <li>Conecte o notebook ao Arduino Mega via USB antes de ligar a bateria principal</li>
+  <li>Posicione o veículo dentro da pista antes de iniciar o script Python</li>
+  <li>Verifique se todos os 6 ATmega328P estão respondendo no barramento CAN antes da largada</li>
+</ul></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">04 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-processamento">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item active" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Processamento</div>
+        </div>
+        <div class="main"><h1 class="pt">Hardware <span class="accent">Processamento</span></h1><div class="pt-rule"></div><h2 class="st">Notebook</h2><p class="lead">O notebook é a central de processamento do sistema de visão computacional. Executa todo o código Python, processa os frames da câmera em tempo real e envia os dados ao Arduino Mega via Serial USB.</p><ul class="checklist">
+  <li>Linguagem: Python 3 | Bibliotecas: OpenCV, PySerial, NumPy</li>
+  <li>Conexão com Mega: UART USB 115.200 bps, protocolo 8N1</li>
+  <li>Função: frames da câmera &rarr; calcula ângulo PID &rarr; envia ao Mega</li>
+</ul><h2 class="st">Arduino Mega 2560</h2><div class="imgrow c3"><div class="bare-img" style="height:190px"><img src="images/arduino_mega.png"></div></div><table class="spec compact"><colgroup><col style="width:40%"><col style="width:60%"></colgroup><thead><tr><th>Parâmetro</th><th>Especificação</th></tr></thead><tbody><tr><td>Microcontrolador</td><td>ATmega2560</td></tr><tr><td>Frequência de clock</td><td>16 MHz</td></tr><tr><td>Memória Flash</td><td>256 kB (8 kB bootloader)</td></tr><tr><td>EEPROM</td><td>4 kB</td></tr><tr><td>SRAM</td><td>8 kB</td></tr><tr><td>Pinos digitais I/O</td><td>54 (15 com PWM)</td></tr><tr><td>Entradas analógicas</td><td>16</td></tr><tr><td>UARTs hardware</td><td>4</td></tr><tr><td>Tensão de operação</td><td>5 V</td></tr><tr><td>Tensão de entrada recomendada</td><td>7–12 V</td></tr><tr><td>Interface SPI</td><td>Sim (MCP2515 – CAN)</td></tr><tr><td>SKU</td><td>A000067</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">05 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item active" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Processamento</div>
+        </div>
+        <div class="main"><h1 class="pt">Periféricos <span class="accent">6 Módulos ATmega328P</span></h1><div class="pt-rule"></div><p class="lead">Cada função crítica do veículo é isolada em um módulo dedicado baseado em ATmega328P, todos conectados ao Arduino Mega pelo barramento CAN 2.0B / J1939. Isso garante que uma falha de firmware em um módulo não derrube o sistema inteiro.</p><div class="diagram-panel">
+      <div class="dtitle">6 MÓDULOS ATMEGA328P · MAPA DE FUNÇÕES E ENDEREÇOS</div>
+      <svg viewBox="0 0 966 240" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;"><defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#256a8f"/>
+  </marker>
+  <marker id="arrowSilver" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#8b959d"/>
+  </marker>
+</defs><rect x="20" y="16" width="300" height="92" rx="7" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><rect x="20" y="16" width="4" height="92" rx="2" fill="#256a8f"/><text x="38" y="42" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13.5" fill="#181e24">PCB Motores Traseiros</text><text x="38" y="63" font-family="Inter, sans-serif" font-size="9.5" fill="#5b6670">Controle de tração traseira – BTS7960</text><text x="38" y="92" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">ATmega328P · SA 0x10</text><rect x="346" y="16" width="300" height="92" rx="7" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><rect x="346" y="16" width="4" height="92" rx="2" fill="#256a8f"/><text x="364" y="42" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13.5" fill="#181e24">PCB Motores Dianteiros</text><text x="364" y="63" font-family="Inter, sans-serif" font-size="9.5" fill="#5b6670">Controle de tração dianteira – BTS7960</text><text x="364" y="92" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">ATmega328P · SA 0x11</text><rect x="672" y="16" width="300" height="92" rx="7" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><rect x="672" y="16" width="4" height="92" rx="2" fill="#256a8f"/><text x="690" y="42" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13.5" fill="#181e24">PCB Sinalização</text><text x="690" y="63" font-family="Inter, sans-serif" font-size="9.5" fill="#5b6670">LEDs RGB e lanternas</text><text x="690" y="92" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">ATmega328P · SA 0x20</text><rect x="20" y="130" width="300" height="92" rx="7" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><rect x="20" y="130" width="4" height="92" rx="2" fill="#256a8f"/><text x="38" y="156" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13.5" fill="#181e24">PCB Encoders</text><text x="38" y="177" font-family="Inter, sans-serif" font-size="9.5" fill="#5b6670">Leitura Hall + velocidade por roda</text><text x="38" y="206" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">ATmega328P · SA 0x30</text><rect x="346" y="130" width="300" height="92" rx="7" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><rect x="346" y="130" width="4" height="92" rx="2" fill="#256a8f"/><text x="364" y="156" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13.5" fill="#181e24">PCB Ultrassônicos</text><text x="364" y="177" font-family="Inter, sans-serif" font-size="9.5" fill="#5b6670">Leitura dos 4 HC-SR04</text><text x="364" y="206" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">ATmega328P · SA 0x40</text><rect x="672" y="130" width="300" height="92" rx="7" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><rect x="672" y="130" width="4" height="92" rx="2" fill="#256a8f"/><text x="690" y="156" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13.5" fill="#181e24">PCB BMS</text><text x="690" y="177" font-family="Inter, sans-serif" font-size="9.5" fill="#5b6670">Monitoramento da bateria</text><text x="690" y="206" font-family="JetBrains Mono, monospace" font-size="9" fill="#256a8f">ATmega328P · SA 0x50</text></svg>
+    </div><table class="spec compact"><colgroup><col style="width:30%"><col style="width:52%"><col style="width:18%"></colgroup><thead><tr><th>Módulo</th><th>Função</th><th>Source Address</th></tr></thead><tbody><tr><td>PCB Motores Traseiros</td><td>Controle de tração traseira – BTS7960</td><td>0x10</td></tr><tr><td>PCB Motores Dianteiros</td><td>Controle de tração dianteira – BTS7960</td><td>0x11</td></tr><tr><td>PCB Sinalização</td><td>LEDs RGB e lanternas</td><td>0x20</td></tr><tr><td>PCB Encoders</td><td>Leitura Hall + velocidade por roda</td><td>0x30</td></tr><tr><td>PCB Ultrassônicos</td><td>Leitura dos 4 HC-SR04</td><td>0x40</td></tr><tr><td>PCB BMS</td><td>Monitoramento da bateria</td><td>0x50</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">06 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-propulsao">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item active" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Propulsão</div>
+        </div>
+        <div class="main"><h1 class="pt">Hardware <span class="accent">Propulsão</span></h1><div class="pt-rule"></div><h2 class="st">Motores RS550</h2><div class="imgrow c2"><div class="bare-img" style="height:150px"><img src="images/motor_rs550.png"></div><div class="icard"><div class="pending"><svg class="picto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="5" width="20" height="15" rx="1.5" stroke="#8b959d" stroke-width="1.4"/>
+      <circle cx="8" cy="11" r="2" stroke="#8b959d" stroke-width="1.4"/>
+      <path d="M2 17l5.5-4.5a2 2 0 0 1 2.5 0L15 17M14 15l2-2a2 2 0 0 1 2.6 0L22 16" stroke="#8b959d" stroke-width="1.4" stroke-linecap="round"/>
+    </svg><div class="t1">Motor montado na roda</div><div class="t2">Foto do RS550 já instalado no cubo de roda · a equipe vai enviar em breve</div></div></div></div><table class="spec compact"><colgroup><col style="width:40%"><col style="width:60%"></colgroup><thead><tr><th>Parâmetro</th><th>Valor</th></tr></thead><tbody><tr><td>Modelo</td><td>RS550</td></tr><tr><td>Tipo</td><td>Motor DC com escovas</td></tr><tr><td>Rotação nominal</td><td>~30.000 RPM (sem carga)</td></tr><tr><td>Tensão nominal</td><td>12 V DC</td></tr><tr><td>Configuração</td><td>4WD – um motor por roda</td></tr><tr><td>Controle</td><td>PWM via driver BTS7960</td></tr></tbody></table><h2 class="st">Driver BTS7960 · Controlador de Alta Corrente</h2><p class="lead">Cada motor RS550 é acionado por uma meia-ponte BTS7960 dedicada, controlada em PWM pelo ATmega328P correspondente. O driver integra proteção contra sobrecorrente, sobretemperatura e curto-circuito.</p></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">07 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item active" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Propulsão</div>
+        </div>
+        <div class="main"><h1 class="pt">Driver BTS7960 <span class="accent">Especificações</span></h1><div class="pt-rule"></div><div class="imgrow c3"><div class="bare-img" style="height:190px"><img src="images/bts7960.png"></div></div><table class="spec compact"><colgroup><col style="width:40%"><col style="width:60%"></colgroup><thead><tr><th>Parâmetro</th><th>Especificação</th></tr></thead><tbody><tr><td>Tipo</td><td>Meia ponte (Half-bridge) – NovalithIC</td></tr><tr><td>Resistência de condução</td><td>16 mΩ a 25 °C</td></tr><tr><td>Frequência PWM máxima</td><td>Até 25 kHz (roda livre ativa)</td></tr><tr><td>Corrente limite típica</td><td>43 A</td></tr><tr><td>Proteção</td><td>Sobrecorrente, sobretemperatura, sobretensão, subtensão</td></tr><tr><td>Diagnóstico</td><td>Flag de estado + sensoriamento de corrente</td></tr><tr><td>Controle EMI</td><td>Interruptor alto canal-P (sem bomba de carga)</td></tr></tbody></table><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">Um driver BTS7960 é usado por eixo (dianteiro e traseiro), cada um comandado por um ATmega328P dedicado · ver mapa de módulos na seção Processamento.</div></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">08 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-direcao">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item active" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Direção</div>
+        </div>
+        <div class="main"><h1 class="pt">Hardware <span class="accent">Direção</span></h1><div class="pt-rule"></div><h2 class="st">Servo DS51150-12V</h2><div class="imgrow c2"><div class="bare-img" style="height:150px"><img src="images/servo_ds51150.png"></div><div class="icard"><div class="pending"><svg class="picto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="5" width="20" height="15" rx="1.5" stroke="#8b959d" stroke-width="1.4"/>
+      <circle cx="8" cy="11" r="2" stroke="#8b959d" stroke-width="1.4"/>
+      <path d="M2 17l5.5-4.5a2 2 0 0 1 2.5 0L15 17M14 15l2-2a2 2 0 0 1 2.6 0L22 16" stroke="#8b959d" stroke-width="1.4" stroke-linecap="round"/>
+    </svg><div class="t1">Servo montado no veículo</div><div class="t2">Foto do servo instalado no conjunto de direção · a equipe vai enviar em breve</div></div></div></div><table class="spec compact"><colgroup><col style="width:34%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:18%"></colgroup><thead><tr><th>Parâmetro</th><th>10 V</th><th>12 V</th><th>12,6 V</th><th>Unidade</th></tr></thead><tbody><tr><td>Corrente em repouso</td><td class="num">4</td><td class="num">5</td><td class="num">6</td><td>mA</td></tr><tr><td>Velocidade sem carga</td><td class="num">0,24</td><td class="num">0,21</td><td class="num">0,19</td><td>seg/60°</td></tr><tr><td>Torque de bloqueio</td><td class="num">150</td><td class="num">165</td><td class="num">173</td><td>kg&middot;cm</td></tr><tr><td>Corrente de bloqueio</td><td class="num">7,4</td><td class="num">8,0</td><td class="num">8,3</td><td>A</td></tr></tbody></table><table class="spec compact"><colgroup><col style="width:40%"><col style="width:60%"></colgroup><thead><tr><th>Parâmetro Geral</th><th>Especificação</th></tr></thead><tbody><tr><td>Dimensões</td><td>65 x 30 x 48 mm</td></tr><tr><td>Peso</td><td>175 g</td></tr><tr><td>Redução</td><td>357:1</td></tr><tr><td>Proteção</td><td>IP67</td></tr><tr><td>Tensão operacional</td><td>9–12,6 V</td></tr><tr><td>Sinal de controle</td><td>PWM 500–2.500 µs / 50–330 Hz</td></tr><tr><td>Ângulo de operação</td><td>180 ou 270 graus</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">09 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item active" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Direção</div>
+        </div>
+        <div class="main"><h1 class="pt">Pinhão PIN-001 <span class="accent">e Cremalheira CRM-001</span></h1><div class="pt-rule"></div><div class="diagram-panel">
+      <div class="dtitle">DESENHO TÉCNICO · CONJUNTO PINHÃO E CREMALHEIRA</div>
+      <svg viewBox="0 0 940 230" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;"><defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#256a8f"/>
+  </marker>
+  <marker id="arrowSilver" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#8b959d"/>
+  </marker>
+</defs><circle cx="150" cy="130" r="62" fill="#f5f7f8" stroke="#256a8f" stroke-width="1.6"/><circle cx="150" cy="130" r="14" fill="none" stroke="#5b6670" stroke-width="1.3"/><line x1="212.0" y1="130.0" x2="219.0" y2="130.0" stroke="#256a8f" stroke-width="2"/><line x1="206.6" y1="155.2" x2="213.0" y2="158.1" stroke="#256a8f" stroke-width="2"/><line x1="191.5" y1="176.1" x2="196.2" y2="181.3" stroke="#256a8f" stroke-width="2"/><line x1="169.2" y1="189.0" x2="171.3" y2="195.6" stroke="#256a8f" stroke-width="2"/><line x1="143.5" y1="191.7" x2="142.8" y2="198.6" stroke="#256a8f" stroke-width="2"/><line x1="119.0" y1="183.7" x2="115.5" y2="189.8" stroke="#256a8f" stroke-width="2"/><line x1="99.8" y1="166.4" x2="94.2" y2="170.6" stroke="#256a8f" stroke-width="2"/><line x1="89.4" y1="142.9" x2="82.5" y2="144.3" stroke="#256a8f" stroke-width="2"/><line x1="89.4" y1="117.1" x2="82.5" y2="115.7" stroke="#256a8f" stroke-width="2"/><line x1="99.8" y1="93.6" x2="94.2" y2="89.4" stroke="#256a8f" stroke-width="2"/><line x1="119.0" y1="76.3" x2="115.5" y2="70.2" stroke="#256a8f" stroke-width="2"/><line x1="143.5" y1="68.3" x2="142.8" y2="61.4" stroke="#256a8f" stroke-width="2"/><line x1="169.2" y1="71.0" x2="171.3" y2="64.4" stroke="#256a8f" stroke-width="2"/><line x1="191.5" y1="83.9" x2="196.2" y2="78.7" stroke="#256a8f" stroke-width="2"/><line x1="206.6" y1="104.8" x2="213.0" y2="101.9" stroke="#256a8f" stroke-width="2"/><text x="150" y="226" text-anchor="middle" font-family="Barlow Semi Condensed" font-weight="700" font-size="13" fill="#181e24">PINHÃO PIN-001</text><text x="150" y="242" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#5b6670">M=3 · z=15 · ⌀51 mm · SAE 1045</text><line x1="88" y1="54" x2="212" y2="54" stroke="#8b959d" stroke-width="1"/><line x1="88" y1="48" x2="88" y2="60" stroke="#8b959d" stroke-width="1"/><line x1="212" y1="48" x2="212" y2="60" stroke="#8b959d" stroke-width="1"/><text x="150" y="48" text-anchor="middle" font-family="JetBrains Mono" font-size="8.5" fill="#8b959d">⌀ 51 mm</text><rect x="330" y="114" width="560" height="32" fill="#f5f7f8" stroke="#256a8f" stroke-width="1.6"/><line x1="330.0" y1="146" x2="330.0" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="351.5" y1="146" x2="351.5" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="373.1" y1="146" x2="373.1" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="394.6" y1="146" x2="394.6" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="416.2" y1="146" x2="416.2" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="437.7" y1="146" x2="437.7" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="459.2" y1="146" x2="459.2" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="480.8" y1="146" x2="480.8" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="502.3" y1="146" x2="502.3" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="523.8" y1="146" x2="523.8" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="545.4" y1="146" x2="545.4" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="566.9" y1="146" x2="566.9" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="588.5" y1="146" x2="588.5" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="610.0" y1="146" x2="610.0" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="631.5" y1="146" x2="631.5" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="653.1" y1="146" x2="653.1" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="674.6" y1="146" x2="674.6" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="696.2" y1="146" x2="696.2" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="717.7" y1="146" x2="717.7" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="739.2" y1="146" x2="739.2" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="760.8" y1="146" x2="760.8" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="782.3" y1="146" x2="782.3" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="803.8" y1="146" x2="803.8" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="825.4" y1="146" x2="825.4" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="846.9" y1="146" x2="846.9" y2="155" stroke="#256a8f" stroke-width="1.6"/><line x1="868.5" y1="146" x2="868.5" y2="155" stroke="#256a8f" stroke-width="1.6"/><text x="610.0" y="180" text-anchor="middle" font-family="Barlow Semi Condensed" font-weight="700" font-size="13" fill="#181e24">CREMALHEIRA CRM-001</text><text x="610.0" y="196" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#5b6670">M=3 · 185 × 60 × 20 mm · SAE 1045</text><line x1="330" y1="100" x2="890" y2="100" stroke="#8b959d" stroke-width="1"/><line x1="330" y1="94" x2="330" y2="106" stroke="#8b959d" stroke-width="1"/><line x1="890" y1="94" x2="890" y2="106" stroke="#8b959d" stroke-width="1"/><text x="610.0" y="94" text-anchor="middle" font-family="JetBrains Mono" font-size="8.5" fill="#8b959d">185 mm</text><circle cx="212" cy="130" r="4" fill="none" stroke="#256a8f" stroke-width="1.4"/></svg>
+    </div><table class="spec compact"><colgroup><col style="width:34%"><col style="width:33%"><col style="width:33%"></colgroup><thead><tr><th>Parâmetro</th><th>Pinhão PIN-001</th><th>Cremalheira CRM-001</th></tr></thead><tbody><tr><td>Material</td><td>Aço SAE 1045</td><td>Aço SAE 1045</td></tr><tr><td>Módulo</td><td>M = 3</td><td>M = 3</td></tr><tr><td>Número de dentes</td><td>z = 15</td><td>–</td></tr><tr><td>Dimensões</td><td>Diâm. 51 mm x alt. 60 mm</td><td>185 x 60 x 20 mm</td></tr><tr><td>Furo central</td><td>Diâm. 12,3 mm</td><td>–</td></tr><tr><td>Rugosidade</td><td>Ra ≤ 3,2 µm</td><td>Ra ≤ 3,2 µm</td></tr><tr><td>Corrida radial</td><td>≤ 0,05 mm</td><td>–</td></tr><tr><td>Norma</td><td>NBR 6158 (IT8)</td><td>NBR 6158 (IT8)</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">10 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-sensores">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item active" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Sensores</div>
+        </div>
+        <div class="main"><h1 class="pt">Hardware <span class="accent">Sensores</span></h1><div class="pt-rule"></div><h2 class="st">Sensor Ultrassônico HC-SR04</h2><div class="imgrow c3"><div class="bare-img" style="height:190px"><img src="images/sensor_hcsr04.png"></div></div><table class="spec compact"><colgroup><col style="width:36%"><col style="width:64%"></colgroup><thead><tr><th>Parâmetro</th><th>Especificação</th></tr></thead><tbody><tr><td>Modelo</td><td>HC-SR04</td></tr><tr><td>Tensão</td><td>DC 5 V &middot; Corrente: 15 mA</td></tr><tr><td>Frequência</td><td>40 kHz</td></tr><tr><td>Alcance</td><td>2 cm – 4 m &middot; Ângulo: 15 graus</td></tr><tr><td>Trigger</td><td>Pulso TTL 10 µs</td></tr><tr><td>Fórmula de distância</td><td>µs / 58 = cm &middot; ciclo mín.: 60 ms</td></tr><tr><td>Quantidade</td><td>4 unidades (frente, trás, esquerda, direita)</td></tr></tbody></table><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">Os quatro sensores HC-SR04 são lidos pelo módulo PCB Ultrassônicos (SA 0x40), que publica as quatro distâncias no barramento CAN via PGN 0xFF30 a cada ciclo de varredura.</div></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">11 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item active" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Sensores</div>
+        </div>
+        <div class="main"><h1 class="pt">Hall KY-035 <span class="accent">e Câmera Fisheye</span></h1><div class="pt-rule"></div><h2 class="st">Sensor de Efeito Hall KY-035 · Encoder de Roda</h2><div class="imgrow c2"><div class="bare-img" style="height:150px"><img src="images/sensor_ky035.png"></div><div class="icard"><div class="pending"><svg class="picto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="5" width="20" height="15" rx="1.5" stroke="#8b959d" stroke-width="1.4"/>
+      <circle cx="8" cy="11" r="2" stroke="#8b959d" stroke-width="1.4"/>
+      <path d="M2 17l5.5-4.5a2 2 0 0 1 2.5 0L15 17M14 15l2-2a2 2 0 0 1 2.6 0L22 16" stroke="#8b959d" stroke-width="1.4" stroke-linecap="round"/>
+    </svg><div class="t1">Ímã de neodímio no eixo</div><div class="t2">Foto do ímã fixado no eixo do motor · a equipe vai enviar em breve</div></div></div></div><table class="spec compact"><colgroup><col style="width:36%"><col style="width:64%"></colgroup><thead><tr><th>Parâmetro</th><th>Especificação</th></tr></thead><tbody><tr><td>Modelo</td><td>HR0031 / KY-035 &middot; Sensor: 44E</td></tr><tr><td>Tensão</td><td>3–6 V DC &middot; Corrente: 4–8 mA</td></tr><tr><td>Sinal de saída</td><td>Digital ON/OFF – coletor aberto</td></tr><tr><td>Tempo de resposta</td><td>2 µs</td></tr><tr><td>Corrente de saída máx.</td><td>25 mA</td></tr><tr><td>Quantidade</td><td>4 unidades (uma por roda)</td></tr><tr><td>Função</td><td>Conta pulsos dos ímãs de neodímio no eixo do motor</td></tr></tbody></table><h2 class="st">Câmera USB Fisheye</h2><div class="imgrow c2"><div class="bare-img" style="height:150px"><img src="images/camera_fisheye.png"></div><div class="icard"><div class="pending"><svg class="picto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="5" width="20" height="15" rx="1.5" stroke="#8b959d" stroke-width="1.4"/>
+      <circle cx="8" cy="11" r="2" stroke="#8b959d" stroke-width="1.4"/>
+      <path d="M2 17l5.5-4.5a2 2 0 0 1 2.5 0L15 17M14 15l2-2a2 2 0 0 1 2.6 0L22 16" stroke="#8b959d" stroke-width="1.4" stroke-linecap="round"/>
+    </svg><div class="t1">Câmera montada no veículo</div><div class="t2">Foto da câmera instalada no chassi · a equipe vai enviar em breve</div></div></div></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">12 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-energia">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item active" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Energia</div>
+        </div>
+        <div class="main"><h1 class="pt">Hardware <span class="accent">Sistema de Energia</span></h1><div class="pt-rule"></div><h2 class="st">Bateria LiFePO4</h2><table class="spec compact"><colgroup><col style="width:36%"><col style="width:64%"></colgroup><thead><tr><th>Parâmetro</th><th>Especificação</th></tr></thead><tbody><tr><td>Tecnologia</td><td>LiFePO4 (Lítio Ferro Fosfato)</td></tr><tr><td>Tensão nominal</td><td>12 V</td></tr><tr><td>Capacidade</td><td>60 Ah</td></tr><tr><td>Gerenciamento</td><td>BMS-40A-4S integrado</td></tr></tbody></table><h2 class="st">BMS-40A-4S · Gerenciamento de Bateria</h2><div class="imgrow c3"><div class="bare-img" style="height:190px"><img src="images/bms_module.png"></div></div><table class="spec compact"><colgroup><col style="width:34%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:18%"></colgroup><thead><tr><th>Parâmetro</th><th>Mín.</th><th>Nominal</th><th>Máx.</th><th>Unidade</th></tr></thead><tbody><tr><td>Tensão de carregamento</td><td class="num">–</td><td class="num">16,8</td><td class="num">18,1</td><td>V</td></tr><tr><td>Corrente contínua de descarga</td><td class="num">–</td><td class="num">40</td><td class="num">40</td><td>A</td></tr><tr><td>Proteção sobrecarga/célula</td><td class="num">4,2</td><td class="num">4,25</td><td class="num">4,3</td><td>V</td></tr><tr><td>Proteção descarga/célula</td><td class="num">2,4</td><td class="num">2,5</td><td class="num">2,6</td><td>V</td></tr><tr><td>Corrente de balanceamento</td><td class="num">95</td><td class="num">100</td><td class="num">105</td><td>mA</td></tr><tr><td>Proteção sobrecorrente (-E)</td><td class="num">70</td><td class="num">80</td><td class="num">90</td><td>A</td></tr><tr><td>Temperatura de operação</td><td class="num">-40</td><td class="num">25</td><td class="num">85</td><td>°C</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">13 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item active" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Energia</div>
+        </div>
+        <div class="main"><h1 class="pt">Relé Auxiliar Reversor <span class="accent">DNI 0116</span></h1><div class="pt-rule"></div><p class="lead">O relé reversor universal comanda a inversão de polaridade dos motores traseiros, permitindo a marcha à ré do veículo sob comando do módulo PCB Motores Traseiros.</p><table class="spec compact"><colgroup><col style="width:36%"><col style="width:64%"></colgroup><thead><tr><th>Parâmetro</th><th>Especificação</th></tr></thead><tbody><tr><td>Modelo</td><td>DNI 0116 – Relé reversor universal</td></tr><tr><td>Tensão</td><td>12 V DC &middot; Corrente: 40/30 A</td></tr><tr><td>Terminal 30</td><td>Positivo direto da bateria (12 V)</td></tr><tr><td>Terminal 85/86</td><td>Lado negativo / positivo da bobina</td></tr><tr><td>Terminal 87 / 87a</td><td>Contato NA / NF</td></tr></tbody></table><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">O relé é acionado eletronicamente pelo módulo de tração traseira · nunca opere a reversão manualmente com o veículo em movimento.</div></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">14 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-comunicacao">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item active" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Comunicação</div>
+        </div>
+        <div class="main"><h1 class="pt">Comunicação</h1><div class="pt-rule"></div><div class="diagram-panel">
+      <div class="dtitle">TOPOLOGIA DA REDE CAN J1939 · 7 NÓS</div>
+      <svg viewBox="0 0 1150 220" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;"><defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#256a8f"/>
+  </marker>
+  <marker id="arrowSilver" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#8b959d"/>
+  </marker>
+</defs><line x1="60" y1="150" x2="1060" y2="150" stroke="#256a8f" stroke-width="2.4"/><rect x="57" y="134" width="6" height="32" fill="none" stroke="#5b6670" stroke-width="1.4"/><text x="60" y="126" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#8b959d">120Ω</text><rect x="1057" y="134" width="6" height="32" fill="none" stroke="#5b6670" stroke-width="1.4"/><text x="1060" y="126" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#8b959d">120Ω</text><line x1="110" y1="150" x2="110" y2="100" stroke="#8b959d" stroke-width="1.3"/><rect x="46.0" y="30" width="128" height="70" rx="6" fill="#123a56" stroke="#256a8f" stroke-width="1.3"/><text x="110" y="56" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11.5" fill="#f5f8fa">Arduino Mega</text><text x="110" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#bcd9e9">SA 0x01</text><text x="110" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#9fc3d6">PGN 0xFEF1</text><circle cx="110" cy="150" r="3" fill="#256a8f"/><line x1="260" y1="150" x2="260" y2="100" stroke="#8b959d" stroke-width="1.3"/><rect x="196.0" y="30" width="128" height="70" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="260" y="54" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11.5" fill="#181e24">PCB Motores</text><text x="260" y="67" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11.5" fill="#181e24">Traseiros</text><text x="260" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#256a8f">SA 0x10</text><text x="260" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#8b959d">PGN 0xFF00</text><circle cx="260" cy="150" r="3" fill="#256a8f"/><line x1="410" y1="150" x2="410" y2="100" stroke="#8b959d" stroke-width="1.3"/><rect x="346.0" y="30" width="128" height="70" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="410" y="54" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11.5" fill="#181e24">PCB Motores</text><text x="410" y="67" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11.5" fill="#181e24">Dianteiros</text><text x="410" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#256a8f">SA 0x11</text><text x="410" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#8b959d">PGN 0xFF00</text><circle cx="410" cy="150" r="3" fill="#256a8f"/><line x1="560" y1="150" x2="560" y2="100" stroke="#8b959d" stroke-width="1.3"/><rect x="496.0" y="30" width="128" height="70" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="560" y="56" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11.5" fill="#181e24">PCB Sinalização</text><text x="560" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#256a8f">SA 0x20</text><text x="560" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#8b959d">PGN 0xFF10</text><circle cx="560" cy="150" r="3" fill="#256a8f"/><line x1="710" y1="150" x2="710" y2="100" stroke="#8b959d" stroke-width="1.3"/><rect x="646.0" y="30" width="128" height="70" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="710" y="56" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11.5" fill="#181e24">PCB Encoders</text><text x="710" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#256a8f">SA 0x30</text><text x="710" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#8b959d">PGN 0xFF20</text><circle cx="710" cy="150" r="3" fill="#256a8f"/><line x1="860" y1="150" x2="860" y2="100" stroke="#8b959d" stroke-width="1.3"/><rect x="796.0" y="30" width="128" height="70" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="860" y="56" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11.5" fill="#181e24">PCB Ultrassônicos</text><text x="860" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#256a8f">SA 0x40</text><text x="860" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#8b959d">PGN 0xFF30</text><circle cx="860" cy="150" r="3" fill="#256a8f"/><line x1="1010" y1="150" x2="1010" y2="100" stroke="#8b959d" stroke-width="1.3"/><rect x="946.0" y="30" width="128" height="70" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="1010" y="56" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11.5" fill="#181e24">PCB BMS</text><text x="1010" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#256a8f">SA 0x50</text><text x="1010" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#8b959d">PGN 0xFF40</text><circle cx="1010" cy="150" r="3" fill="#256a8f"/><text x="560.0" y="184" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#5b6670">barramento linear · 250 kbps · topologia CAN 2.0B / J1939 · transceptor MCP2515</text></svg>
+    </div><h2 class="st">Serial USB · Notebook e Arduino Mega</h2><table class="spec compact"><colgroup><col style="width:36%"><col style="width:64%"></colgroup><thead><tr><th>Parâmetro</th><th>Especificação</th></tr></thead><tbody><tr><td>Protocolo</td><td>UART (Serial USB)</td></tr><tr><td>Baud rate</td><td>115.200 bps</td></tr><tr><td>Formato</td><td>8N1 (8 bits, sem paridade, 1 stop bit)</td></tr><tr><td>Usos</td><td>Ângulo PID; logs; comandos de teste</td></tr><tr><td>Biblioteca Python</td><td>PySerial</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">15 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item active" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Comunicação</div>
+        </div>
+        <div class="main"><h1 class="pt">CAN 2.0B / J1939 <span class="accent">Arduino Mega e ATmegas</span></h1><div class="pt-rule"></div><table class="spec compact"><colgroup><col style="width:36%"><col style="width:64%"></colgroup><thead><tr><th>Parâmetro</th><th>Especificação</th></tr></thead><tbody><tr><td>Protocolo base / aplicação</td><td>CAN 2.0B / J1939 (SAE)</td></tr><tr><td>Velocidade</td><td>250 kbps</td></tr><tr><td>Transceptor</td><td>MCP2515 via SPI &middot; cristal 8 MHz</td></tr><tr><td>Topologia</td><td>Barramento linear &middot; terminação 120 Ω</td></tr><tr><td>Nós na rede</td><td>7 (1 Mega mestre + 6 ATmegas)</td></tr></tbody></table><h2 class="st">PGNs e Source Addresses</h2><table class="spec compact"><colgroup><col style="width:26%"><col style="width:16%"><col style="width:14%"><col style="width:44%"></colgroup><thead><tr><th>Nó / Módulo</th><th>Source Address</th><th>PGN</th><th>Descrição</th></tr></thead><tbody><tr><td>Arduino Mega (Mestre)</td><td>0x01</td><td>0xFEF1</td><td>Comando de tração aos motores</td></tr><tr><td>PCB Motores Traseiros</td><td>0x10</td><td>0xFF00</td><td>Telemetria: RPM, corrente, status</td></tr><tr><td>PCB Motores Dianteiros</td><td>0x11</td><td>0xFF00</td><td>Telemetria: RPM, corrente, status</td></tr><tr><td>PCB Sinalização</td><td>0x20</td><td>0xFF10</td><td>Estado LEDs e lanternas</td></tr><tr><td>PCB Encoders</td><td>0x30</td><td>0xFF20</td><td>Velocidade por roda (Hall)</td></tr><tr><td>PCB Ultrassônicos</td><td>0x40</td><td>0xFF30</td><td>Distâncias 4x HC-SR04</td></tr><tr><td>PCB BMS</td><td>0x50</td><td>0xFF40</td><td>Tensão, corrente e temperatura</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">16 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-software">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item active" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Software</div>
+        </div>
+        <div class="main"><h1 class="pt">Software</h1><div class="pt-rule"></div><h2 class="st">Visão Computacional · Python + OpenCV</h2><p class="lead">O algoritmo de navegação roda inteiramente em Python no notebook, processando cada frame da câmera USB em um pipeline de 8 etapas antes de decidir o ângulo de direção.</p><div class="diagram-panel">
+      <div class="dtitle">PIPELINE DE VISÃO COMPUTACIONAL</div>
+      <svg viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;"><defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#256a8f"/>
+  </marker>
+  <marker id="arrowSilver" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#8b959d"/>
+  </marker>
+</defs><rect x="49.0" y="60" width="132" height="74" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="115.0" y="96.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="12.5" fill="#181e24">1. Captura</text><text x="115.0" y="111.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">Frame bruto (BGR)</text><line x1="181.0" y1="97.0" x2="203.0" y2="97.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><rect x="203.0" y="60" width="132" height="74" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="269.0" y="96.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="12.5" fill="#181e24">2. Perspectiva</text><text x="269.0" y="111.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">Bird's Eye View</text><line x1="335.0" y1="97.0" x2="357.0" y2="97.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><rect x="357.0" y="60" width="132" height="74" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="423.0" y="96.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="12.5" fill="#181e24">3. Pré-proc.</text><text x="423.0" y="111.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">Cinza + blur</text><line x1="489.0" y1="97.0" x2="511.0" y2="97.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><rect x="511.0" y="60" width="132" height="74" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="577.0" y="96.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="12.5" fill="#181e24">4. Binarização</text><text x="577.0" y="111.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">Threshold adapt.</text><line x1="643.0" y1="97.0" x2="665.0" y2="97.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><rect x="665.0" y="60" width="132" height="74" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="731.0" y="96.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="12.5" fill="#181e24">5. Faixas</text><text x="731.0" y="111.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">Histograma</text><line x1="797.0" y1="97.0" x2="819.0" y2="97.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><rect x="819.0" y="60" width="132" height="74" rx="6" fill="#123a56" stroke="#256a8f" stroke-width="1.3"/><text x="885.0" y="96.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="12.5" fill="#f5f8fa">6. Erro (px)</text><text x="885.0" y="111.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#bcd9e9">Centro vs. pista</text><text x="500" y="174" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#5b6670">saída: ângulo de correção calculado por PID → enviado ao Arduino Mega via PySerial (115.200 bps)</text></svg>
+    </div><table class="spec compact"><colgroup><col style="width:16%"><col style="width:54%"><col style="width:30%"></colgroup><thead><tr><th>Etapa</th><th>Técnica</th><th>Saída</th></tr></thead><tbody><tr><td>1. Captura</td><td>OpenCV VideoCapture (câmera USB)</td><td>Frame bruto (BGR)</td></tr><tr><td>2. Perspectiva</td><td>4 pontos de controle + getPerspectiveTransform</td><td>ROI 320×240 em vista aérea</td></tr><tr><td>3. Pré-processamento</td><td>Conversão para escala de cinza</td><td>Imagem em tons de cinza</td></tr><tr><td>4. Binarização</td><td>Threshold fixo, ajustável no painel de controle</td><td>Imagem binária (P&amp;B)</td></tr><tr><td>5. Faixas</td><td>Sliding window: 3 janelas horizontais, pixels brancos/coluna</td><td>Posição esq./dir. por janela</td></tr><tr><td>6. Erro</td><td>Média das janelas válidas vs. centro da imagem</td><td>Erro lateral em pixels</td></tr><tr><td>7. Controle</td><td>PID reta ou curva, conforme o erro (dual-PID)</td><td>Ângulo de correção (±90°)</td></tr><tr><td>8. Transmissão</td><td>JSON via Serial 115.200 bps, a cada 200 ms</td><td>servo/velocidade ao Arduino Mega</td></tr></tbody></table><h2 class="st">Painel de Ajuste em Tempo Real</h2><p class="lead">Todos os parâmetros abaixo são ajustáveis ao vivo, por sliders no painel de controle ou pelo dashboard web, e podem ser persistidos em config/config.json.</p><table class="spec compact"><colgroup><col style="width:30%"><col style="width:20%"><col style="width:50%"></colgroup><thead><tr><th>Parâmetro</th><th>Exemplo salvo</th><th>Efeito</th></tr></thead><tbody><tr><td>ROI &middot; Linha superior/inferior</td><td>525 / 385 px</td><td>Largura do topo e da base do trapézio de perspectiva</td></tr><tr><td>ROI &middot; Altura sup./inf.</td><td>192 / 286 px</td><td>Posição vertical do topo/base do trapézio na imagem</td></tr><tr><td>Limiar de binarização</td><td>217</td><td>Nível de cinza acima do qual um pixel vira 'faixa'</td></tr><tr><td>Erro de transição</td><td>12 px</td><td>Limite para trocar entre PID de reta e de curva</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">17 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item active" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Software</div>
+        </div>
+        <div class="main"><h1 class="pt">Software <span class="accent">Sliding Window</span></h1><div class="pt-rule"></div><p class="lead">Dentro da ROI já convertida em vista aérea e binarizada, o algoritmo localiza as duas faixas da pista sem nenhuma rede neural &mdash; apenas contagem de pixels brancos por coluna.</p><h2 class="st">Busca por Janelas Deslizantes</h2><table class="spec compact"><colgroup><col style="width:8%"><col style="width:92%"></colgroup><thead><tr><th>Passo</th><th>O que acontece</th></tr></thead><tbody><tr><td>1</td><td>A ROI (320&times;240) é dividida em 3 janelas horizontais de mesma altura</td></tr><tr><td>2</td><td>Em cada janela, conta-se o número de pixels brancos em cada coluna</td></tr><tr><td>3</td><td>A coluna com mais pixels na metade esquerda vira a 'faixa esquerda'; idem à direita</td></tr><tr><td>4</td><td>A faixa só é considerada válida se o total de pixels superar 10% da altura da janela</td></tr><tr><td>5</td><td>As posições válidas das 3 janelas são combinadas por média, definindo a posição final</td></tr></tbody></table><h2 class="st">4 Estados da Pista</h2><table class="spec compact"><colgroup><col style="width:14%"><col style="width:40%"><col style="width:46%"></colgroup><thead><tr><th>Estado</th><th>Condição</th><th>Cálculo do centro</th></tr></thead><tbody><tr><td>both</td><td>As duas faixas válidas</td><td>Média entre esquerda e direita</td></tr><tr><td>left</td><td>Só a faixa esquerda válida</td><td>Esquerda + metade do track_size (estimado)</td></tr><tr><td>right</td><td>Só a faixa direita válida</td><td>Direita − metade do track_size (estimado)</td></tr><tr><td>none</td><td>Nenhuma faixa válida</td><td>Mantém o último erro conhecido</td></tr></tbody></table><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">track_size guarda a última largura de pista medida (distância entre as duas faixas) sempre que ambas são detectadas ao mesmo tempo. Quando só uma faixa aparece, essa memória é usada para estimar onde a outra deveria estar, em vez de simplesmente perder a referência.</div></div><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">O erro final é a diferença, em pixels, entre o centro calculado da pista e o centro da imagem. Um círculo verde marca o centro da pista e um vermelho o ponto de referência &mdash; ambos exibidos ao vivo na aba de câmeras do painel de controle.</div></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">18 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item active" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Software</div>
+        </div>
+        <div class="main"><h1 class="pt">Inteligência Artificial <span class="accent">YOLO</span></h1><div class="pt-rule"></div><p class="lead">Um modelo YOLOv11 (model/Modelo_3.pt) roda em uma thread própria, independente da visão principal &mdash; assim, a inferência (mais lenta) nunca atrasa o laço que dirige o carro.</p><table class="spec compact"><colgroup><col style="width:20%"><col style="width:44%"><col style="width:36%"></colgroup><thead><tr><th>Evento</th><th>Critério de validação</th><th>Ação</th></tr></thead><tbody><tr><td>Placa PARE</td><td>Confiança ≥ 80% · área ≥ 1.500 px² · diagonal mínima</td><td>Velocidade 0 por 3–5 s, depois cooldown de 3–5 s</td></tr><tr><td>Semáforo vermelho</td><td>Maior confiança entre os semáforos no frame</td><td>Velocidade 0 até detectar verde</td></tr><tr><td>Semáforo amarelo</td><td>Idem, cor classificada pelo recorte da caixa</td><td>Reduz para % configurável da velocidade base</td></tr><tr><td>Semáforo verde / nenhum</td><td>Sem detecção válida por 2 s &rarr; estado 'nenhum'</td><td>Velocidade normal configurada</td></tr></tbody></table><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">A cor do semáforo é decidida sem uma rede neural dedicada: o recorte da caixa detectada pelo YOLO é convertido para tons de cinza e dividido em 3 faixas horizontais (topo/meio/base) &mdash; a faixa com maior brilho médio indica a lâmpada acesa, seguindo o mesmo layout físico do semáforo (vermelho/amarelo/verde).</div></div><h2 class="st">Ciclo de Inferência</h2><table class="spec compact"><colgroup><col style="width:28%"><col style="width:20%"><col style="width:52%"></colgroup><thead><tr><th>Parâmetro</th><th>Valor padrão</th><th>Descrição</th></tr></thead><tbody><tr><td>Intervalo de detecção</td><td>A cada 5 frames</td><td>Frequência de execução do YOLO (ajustável)</td></tr><tr><td>Confiança mínima (STOP)</td><td>80%</td><td>Abaixo disso a caixa detectada é ignorada</td></tr><tr><td>Área mínima (STOP)</td><td>1.500 px²</td><td>Evita ativar STOP com placas pequenas/distantes</td></tr><tr><td>Tempo de parada / cooldown</td><td>3–5 s / 3–5 s</td><td>Duração do freio e intervalo mínimo antes do próximo PARE</td></tr><tr><td>Timeout do semáforo</td><td>2 s</td><td>Sem detecção válida por esse tempo &rarr; estado 'nenhum'</td></tr></tbody></table><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">A thread de sinais lê apenas o frame mais recente compartilhado (protegido por um lock) e atualiza duas variáveis de estado que o laço principal apenas consulta a cada iteração. Não existe fila: se a IA ainda está processando, o carro segue com o último estado conhecido, sem travar.</div></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">19 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item active" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Software</div>
+        </div>
+        <div class="main"><h1 class="pt">Controle <span class="accent">Dual-PID</span></h1><div class="pt-rule"></div><p class="lead">O erro lateral (em pixels) alimenta dois controladores PID independentes &mdash; ajustados separadamente para trechos retos e curvas &mdash; escolhidos automaticamente a cada ciclo.</p><div class="diagram-panel">
+      <div class="dtitle">MALHA DE CONTROLE PID · DIREÇÃO AUTÔNOMA</div>
+      <svg viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;"><defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#256a8f"/>
+  </marker>
+  <marker id="arrowSilver" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#8b959d"/>
+  </marker>
+</defs><rect x="40" y="70" width="130" height="66" rx="6" fill="#fbfbfa" stroke="#dde2e6" stroke-width="1.3"/><text x="105.0" y="102.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="12.5" fill="#5b6670">Setpoint</text><text x="105.0" y="117.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#8b959d">Centro da pista = 0</text><circle cx="225" cy="103.0" r="20" fill="#f5f7f8" stroke="#256a8f" stroke-width="1.4"/><text x="225" y="109.0" text-anchor="middle" font-size="18" fill="#181e24" font-family="JetBrains Mono, monospace">Σ</text><line x1="170" y1="103.0" x2="205" y2="103.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><rect x="280" y="70" width="140" height="66" rx="6" fill="#123a56" stroke="#256a8f" stroke-width="1.3"/><text x="350.0" y="102.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13" fill="#f5f8fa">Controlador PID</text><text x="350.0" y="117.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#bcd9e9">P + I + D</text><line x1="245" y1="103.0" x2="280" y2="103.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><rect x="500" y="70" width="140" height="66" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="570.0" y="102.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13" fill="#181e24">Veículo (planta)</text><text x="570.0" y="117.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#5b6670">Servo → direção</text><line x1="420" y1="103.0" x2="500" y2="103.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><text x="460.0" y="95.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">Ângulo servo</text><rect x="730" y="70" width="150" height="66" rx="6" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1.3"/><text x="805.0" y="102.0" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="12" fill="#181e24">Visão computacional</text><text x="805.0" y="117.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">Câmera + OpenCV</text><line x1="640" y1="103.0" x2="730" y2="103.0" stroke="#256a8f" stroke-width="1.6" marker-end="url(#arrow)"/><text x="685.0" y="95.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">Posição real</text><line x1="805.0" y1="136" x2="805.0" y2="191" stroke="#8b959d" stroke-width="1.4"/><line x1="805.0" y1="191" x2="225" y2="191" stroke="#8b959d" stroke-width="1.4"/><line x1="225" y1="191" x2="225" y2="123.0" stroke="#8b959d" stroke-width="1.4" marker-end="url(#arrowSilver)"/><text x="515.0" y="207" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#8b959d">realimentação (erro em pixels)</text><text x="225" y="73.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b6670">erro e(t)</text></svg>
+    </div><h2 class="st">Fórmula e Comutação Reta/Curva</h2><table class="spec compact"><colgroup><col style="width:18%"><col style="width:36%"><col style="width:46%"></colgroup><thead><tr><th>Termo</th><th>Fórmula</th><th>Papel</th></tr></thead><tbody><tr><td>Proporcional (P)</td><td>Kp &times; erro</td><td>Resposta imediata ao desvio atual</td></tr><tr><td>Integral (I)</td><td>Ki &times; &Sigma;(erro &times; dt)</td><td>Corrige desvio acumulado/persistente</td></tr><tr><td>Derivativo (D)</td><td>Kd &times; (erro − erro_anterior) / dt</td><td>Amortece mudanças bruscas</td></tr><tr><td>Saída</td><td>P + I + D, limitada a ±90°</td><td>Ângulo de correção somado a 90° e enviado ao servo</td></tr></tbody></table><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">Reta vs. curva: quando o erro está dentro do limiar 'Erro de transição' (12 px no exemplo salvo), o PID de reta assume, com ganhos mais suaves. Fora desse limiar, o PID de curva assume, com ganhos mais agressivos para reagir mais rápido.</div></div><h2 class="st">Envio ao Arduino Mega</h2><table class="spec compact"><colgroup><col style="width:16%"><col style="width:20%"><col style="width:64%"></colgroup><thead><tr><th>Campo</th><th>Tipo</th><th>Significado</th></tr></thead><tbody><tr><td>servo</td><td>int, 0–180</td><td>90 = centro; ângulo do PID somado a 90</td></tr><tr><td>speed</td><td>float</td><td>Velocidade efetiva (m/s); 0 quando parado, em STOP ou vermelho</td></tr><tr><td>stop</td><td>bool</td><td>True força parada imediata</td></tr><tr><td>tl</td><td>int, -1 a 2</td><td>Estado do semáforo: nenhum/vermelho/amarelo/verde</td></tr><tr><td>lights</td><td>int, 0/1</td><td>Iluminação do veículo</td></tr></tbody></table><p class="lead">O pacote é serializado em JSON e enviado a cada 'Intervalo de comando' (200 ms por padrão) via Serial a 115.200 bps.</p></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">20 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item active" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Software</div>
+        </div>
+        <div class="main"><h1 class="pt">Software <span class="accent">Painel de Controle</span></h1><div class="pt-rule"></div><p class="lead">Duas interfaces permitem operar e depurar o veículo em tempo real: um painel desktop com visão ao vivo, e um dashboard web para acesso remoto pelo celular.</p><h2 class="st">Painel Desktop</h2><table class="spec compact"><colgroup><col style="width:22%"><col style="width:78%"></colgroup><thead><tr><th>Aba</th><th>Conteúdo</th></tr></thead><tbody><tr><td>Câmeras ao vivo</td><td>3 vistas simultâneas: câmera da pista, vista aérea com faixas, e detecções de sinais &mdash; até 30 FPS, sem fila, sempre o frame mais recente</td></tr><tr><td>Pista e Direção</td><td>Sliders de ROI, limiar de binarização, erro de transição e os 6 ganhos do PID (reta/curva)</td></tr><tr><td>Carro e Sinais</td><td>Velocidade alvo, % de velocidade no amarelo, ângulo máximo, intervalo de comando e limiares de confiança/tamanho para PARE e semáforo</td></tr><tr><td>Informações do Carro</td><td>Telemetria ao vivo: erro da faixa, modo PID ativo, velocidade recebida/aplicada, bateria, distância dos 3 ultrassônicos e status de cada módulo</td></tr><tr><td>Conexão e Registros</td><td>Porta COM e índice de câmera, reconexão a quente, e um log colorido (info/ok/aviso/erro/RX/TX) com horário</td></tr></tbody></table><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">A visualização de câmera nunca compete com o controle do carro: roda em sua própria janela de atualização (33 ms) e exibe só a imagem mais recente &mdash; frames não consumidos a tempo são descartados, sem acumular atraso na direção.</div></div><h2 class="st">Dashboard Web (porta 5000)</h2><table class="spec compact"><colgroup><col style="width:20%"><col style="width:18%"><col style="width:62%"></colgroup><thead><tr><th>Rota</th><th>Método</th><th>Função</th></tr></thead><tbody><tr><td>/api/config</td><td>GET / POST</td><td>Lê ou atualiza os parâmetros (ROI, PID, velocidade, confiança dos sinais)</td></tr><tr><td>/api/dashboard</td><td>GET</td><td>Telemetria simplificada para o Digital Twin (rpm estimado, luz ligada)</td></tr><tr><td>/api/reset</td><td>POST</td><td>Restaura os parâmetros salvos em config/config.json</td></tr><tr><td>/panel</td><td>GET</td><td>Painel HTML simplificado com sliders, otimizado para celular</td></tr></tbody></table><div class="callout info"><div class="flag">ℹ Informação</div><div class="body">O dashboard é liberado no Firewall do Windows automaticamente na primeira execução, e pode ser aberto no celular lendo um QR Code gerado direto no painel desktop.</div></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">21 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item active" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Software</div>
+        </div>
+        <div class="main"><h1 class="pt">Software <span class="accent">Firmware Embarcado</span></h1><div class="pt-rule"></div><p class="lead">O Arduino Mega recebe os comandos vindos do notebook e traduz para acionamento físico dos motores e do servo, além de uma camada extra de segurança independente contra obstáculos.</p><h2 class="st">Controle dos 4 Motores (Ponte H)</h2><table class="spec compact"><colgroup><col style="width:26%"><col style="width:74%"></colgroup><thead><tr><th>Recurso</th><th>Comportamento</th></tr></thead><tbody><tr><td>HBridgeController</td><td>Uma instância por roda (4 no total), cada uma com seus pinos RPWM/LPWM</td></tr><tr><td>move(vel)</td><td>Define a velocidade alvo (-255 a 255); o sinal define frente ou ré</td></tr><tr><td>Aceleração progressiva</td><td>Opcional: incrementa o PWM em passos (padrão 5) a cada 10 ms até o alvo, evitando arrancadas bruscas</td></tr><tr><td>stop()</td><td>Zera a velocidade e desliga o PWM imediatamente, sem rampa</td></tr></tbody></table><h2 class="st">Servo com Rampa Suave</h2><p class="lead">Assim como os motores, o ângulo do servo não salta direto para o valor recebido: o firmware o desloca em passos de 1° a cada 1 ms até alcançar o alvo, resultando em uma direção mecanicamente mais suave.</p><h2 class="st">Camada de Segurança Independente</h2><p class="lead">Um segundo microcontrolador (Arduino UNO) lê 3 sensores ultrassônicos de forma não bloqueante e envia apenas 'PARE' ou 'PROSSIGA' ao Mega por uma serial dedicada (Serial1).</p><table class="spec compact"><colgroup><col style="width:30%"><col style="width:30%"><col style="width:40%"></colgroup><thead><tr><th>Sensor</th><th>Alcance máx.</th><th>Distância de segurança</th></tr></thead><tbody><tr><td>Frontal</td><td>200 cm</td><td>≤ 40 cm aciona PARE</td></tr><tr><td>Lateral esquerdo</td><td>100 cm</td><td>≤ 25 cm aciona PARE</td></tr><tr><td>Lateral direito</td><td>100 cm</td><td>≤ 25 cm aciona PARE</td></tr></tbody></table><div class="callout aviso"><div class="flag">✦ Aviso</div><div class="body">O Mega só muda de estado (PARE &#8644; PROSSIGA) depois de receber a mesma mensagem 10 vezes seguidas do UNO &mdash; um filtro anti-ruído que evita frenagens falsas por leituras isoladas ruins do sensor. Essa parada por obstáculo é independente do STOP enviado pelo notebook: qualquer uma das duas pode parar o veículo.</div></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">22 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-pecas">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item active" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Peças Mecânicas</div>
+        </div>
+        <div class="main"><h1 class="pt">Peças Mecânicas <span class="accent">e Componentes Fabricados</span></h1><div class="pt-rule"></div><table class="spec compact"><colgroup><col style="width:11%"><col style="width:23%"><col style="width:19%"><col style="width:13%"><col style="width:34%"></colgroup><thead><tr><th>Código</th><th>Nome da Peça</th><th>Processo</th><th>Material</th><th>Observações</th></tr></thead><tbody><tr><td>PIN-001</td><td>Pinhão de Direção</td><td>Tornear + Fresar CNC</td><td>SAE 1045</td><td>M=3, z=15, Diâm. 51x60 mm</td></tr><tr><td>CRM-001</td><td>Cremalheira de Direção</td><td>Fresamento CNC</td><td>SAE 1045</td><td>185x60x20 mm</td></tr><tr><td>CRW-001</td><td>Hub de Roda c/ Encoder</td><td>Usinagem CNC</td><td>SAE 1045</td><td>Suporte sensor Hall</td></tr><tr><td>ESV-001</td><td>Suporte do Servo</td><td>CNC + Impressão 3D</td><td>PLA/Aço</td><td>Fixação DS51150</td></tr><tr><td>EIX-001</td><td>Eixo de Transmissão</td><td>Tornear CNC</td><td>SAE 1045</td><td>Motores às rodas</td></tr><tr><td>–</td><td>Case Servo Superior</td><td>Impressão 3D (FDM)</td><td>PLA</td><td>Proteção superior do servo</td></tr><tr><td>–</td><td>Case Servo Inferior</td><td>Impressão 3D (FDM)</td><td>PLA</td><td>Base de fixação</td></tr><tr><td>–</td><td>Conector de Direção</td><td>Impressão 3D (FDM)</td><td>PLA</td><td>Acoplamento servo-cremalheira</td></tr><tr><td>–</td><td>Calota Apex</td><td>Impressão 3D (FDM)</td><td>PLA</td><td>Elemento estético das rodas</td></tr><tr><td>–</td><td>Lanterna</td><td>Impressão 3D (FDM)</td><td>PLA</td><td>Suporte dos LEDs traseiros</td></tr></tbody></table><div class="imgrow c4"><div class="icard">
+      <div class="ph" style="height:112px"><img src="images/pinhao.png"></div>
+      <div class="cap"><b>Pinhão de Direção</b><span>PIN-001</span></div>
+    </div><div class="icard">
+      <div class="ph" style="height:112px"><img src="images/cremalheira.png"></div>
+      <div class="cap"><b>Cremalheira de Direção</b><span>CRM-001</span></div>
+    </div><div class="icard">
+      <div class="ph" style="height:112px"><img src="images/encoder.png"></div>
+      <div class="cap"><b>Hub de Roda c/ Encoder</b><span>CRW-001</span></div>
+    </div><div class="icard">
+      <div class="ph" style="height:112px"><img src="images/case_servo_cima.png"></div>
+      <div class="cap"><b>Case Servo Superior</b></div>
+    </div><div class="icard">
+      <div class="ph" style="height:112px"><img src="images/case_servo_baixo.png"></div>
+      <div class="cap"><b>Case Servo Inferior</b></div>
+    </div><div class="icard">
+      <div class="ph" style="height:112px"><img src="images/conector_direcao.png"></div>
+      <div class="cap"><b>Conector de Direção</b></div>
+    </div><div class="icard">
+      <div class="ph" style="height:112px"><img src="images/calota.png"></div>
+      <div class="cap"><b>Calota Apex</b></div>
+    </div><div class="icard">
+      <div class="ph" style="height:112px"><img src="images/lanterna.png"></div>
+      <div class="cap"><b>Lanterna</b></div>
+    </div></div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">23 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item active" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Peças Mecânicas</div>
+        </div>
+        <div class="main"><h1 class="pt">Montagem <span class="accent">e Controle Dimensional</span></h1><div class="pt-rule"></div><div class="imgrow c2"><div class="icard"><div class="pending"><svg class="picto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="5" width="20" height="15" rx="1.5" stroke="#8b959d" stroke-width="1.4"/>
+      <circle cx="8" cy="11" r="2" stroke="#8b959d" stroke-width="1.4"/>
+      <path d="M2 17l5.5-4.5a2 2 0 0 1 2.5 0L15 17M14 15l2-2a2 2 0 0 1 2.6 0L22 16" stroke="#8b959d" stroke-width="1.4" stroke-linecap="round"/>
+    </svg><div class="t1">Render 3D · conjunto de direção</div><div class="t2">Pinhão + cremalheira + servo · a equipe vai enviar em breve</div></div></div><div class="icard"><div class="pending"><svg class="picto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="5" width="20" height="15" rx="1.5" stroke="#8b959d" stroke-width="1.4"/>
+      <circle cx="8" cy="11" r="2" stroke="#8b959d" stroke-width="1.4"/>
+      <path d="M2 17l5.5-4.5a2 2 0 0 1 2.5 0L15 17M14 15l2-2a2 2 0 0 1 2.6 0L22 16" stroke="#8b959d" stroke-width="1.4" stroke-linecap="round"/>
+    </svg><div class="t1">Montagem mecânica final</div><div class="t2">Foto da montagem completa no veículo · a equipe vai enviar em breve</div></div></div></div><h2 class="st">Controle Dimensional · Pinhão PIN-001 (Operação 060 – 100% das peças)</h2><table class="spec compact"><colgroup><col style="width:32%"><col style="width:38%"><col style="width:30%"></colgroup><thead><tr><th>Verificação</th><th>Instrumento</th><th>Critério</th></tr></thead><tbody><tr><td>Diâmetro externo</td><td>Paquímetro digital 0,01 mm</td><td>Diâm. 51 mm</td></tr><tr><td>Altura total</td><td>Paquímetro digital</td><td>60 mm</td></tr><tr><td>Furo central</td><td>Calibre passa/não-passa</td><td>Diâm. 12,3 mm</td></tr><tr><td>Perfil dos dentes</td><td>Gabarito de módulo M=3</td><td>Conforme perfil</td></tr><tr><td>Corrida radial</td><td>Relógio comparador</td><td>≤ 0,05 mm</td></tr><tr><td>Rugosidade</td><td>Rugosímetro</td><td>Ra ≤ 3,2 µm</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">24 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-fmea">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item active" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">FMEA</div>
+        </div>
+        <div class="main"><h1 class="pt">FMEA <span class="accent">Análise de Modos e Efeitos de Falha</span></h1><div class="pt-rule"></div><p class="lead">A FMEA cobre três blocos: (1) Manufatura, (2) Eletrônica e Embarcado, (3) Software e IA. RPN = S x O x D &nbsp;|&nbsp; Escala AIAG 1–10.</p><table class="spec compact"><colgroup><col style="width:22%"><col style="width:20%"><col style="width:58%"></colgroup><thead><tr><th>Faixa RPN</th><th>Prioridade</th><th>Ação</th></tr></thead><tbody><tr><td>RPN ≥ 100</td><td>CRÍTICO</td><td>Ação corretiva imediata obrigatória</td></tr><tr><td>RPN 60–99</td><td>ALTO</td><td>Ação preventiva antes da demonstração</td></tr><tr><td>RPN < 60</td><td>MODERADO</td><td>Monitorar na evolução do projeto</td></tr></tbody></table><h2 class="st">Bloco 1 · Manufatura</h2><table class="spec compact"><colgroup><col style="width:19%"><col style="width:25%"><col style="width:25%"><col style="width:8%"><col style="width:8%"><col style="width:8%"><col style="width:9%"></colgroup><thead><tr><th>Etapa</th><th>Falha</th><th>Efeito</th><th>S</th><th>O</th><th>D</th><th>RPN</th></tr></thead><tbody><tr><td>Pinhão – Tornear</td><td>Diâm. fora de tolerância</td><td>Folga no engrenamento</td><td class="num">7</td><td class="num">3</td><td class="num">2</td><td class="num">42</td></tr><tr><td>Pinhão – Fresar</td><td>Perfil de dente incorreto</td><td>Vibração e ruído</td><td class="num">8</td><td class="num">3</td><td class="num">2</td><td class="num">48</td></tr><tr><td>Cremalheira – Fresar</td><td>Passo linear incorreto</td><td>Imprecisão de direção</td><td class="num">7</td><td class="num">2</td><td class="num">2</td><td class="num">28</td></tr><tr><td>Suporte Servo – Furar</td><td>Furo fora de posição</td><td>Servo desalinhado</td><td class="num">6</td><td class="num">2</td><td class="num">2</td><td class="num">24</td></tr><tr><td>Inspeção Final</td><td>Corrida radial >0,05 mm</td><td>Vibração no sistema</td><td class="num">7</td><td class="num">2</td><td class="num">1</td><td class="num">14</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">25 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item active" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">FMEA</div>
+        </div>
+        <div class="main"><h1 class="pt">Blocos 2 e 3 <span class="accent">Eletrônica, Software e IA</span></h1><div class="pt-rule"></div><h2 class="st">Bloco 2 · Eletrônica e Embarcado</h2><table class="spec compact"><colgroup><col style="width:19%"><col style="width:25%"><col style="width:25%"><col style="width:8%"><col style="width:8%"><col style="width:8%"><col style="width:9%"></colgroup><thead><tr><th>Etapa</th><th>Falha</th><th>Efeito</th><th>S</th><th>O</th><th>D</th><th>RPN</th></tr></thead><tbody><tr class="alto"><td>Driver BTS7960</td><td>Sobrecorrente</td><td>Queima do driver</td><td class="num">8</td><td class="num">3</td><td class="num">3</td><td class="num">72</td></tr><tr><td>Comunicação CAN</td><td>Perda de mensagem</td><td>Comando não executado</td><td class="num">8</td><td class="num">3</td><td class="num">2</td><td class="num">48</td></tr><tr><td>Servo DS51150</td><td>Não responde ao PWM</td><td>Perda de direção</td><td class="num">9</td><td class="num">2</td><td class="num">2</td><td class="num">36</td></tr><tr><td>Sensor Hall</td><td>Falha de leitura</td><td>Velocidade incorreta</td><td class="num">6</td><td class="num">3</td><td class="num">2</td><td class="num">36</td></tr><tr><td>BMS-40A-4S</td><td>Desconexão por pico</td><td>Perda total de energia</td><td class="num">9</td><td class="num">2</td><td class="num">2</td><td class="num">36</td></tr><tr class="alto"><td>HC-SR04</td><td>Leitura errônea</td><td>Colisão com obstáculo</td><td class="num">7</td><td class="num">4</td><td class="num">3</td><td class="num">84</td></tr></tbody></table><h2 class="st">Bloco 3 · Software e IA</h2><table class="spec compact"><colgroup><col style="width:19%"><col style="width:25%"><col style="width:25%"><col style="width:8%"><col style="width:8%"><col style="width:8%"><col style="width:9%"></colgroup><thead><tr><th>Etapa</th><th>Falha</th><th>Efeito</th><th>S</th><th>O</th><th>D</th><th>RPN</th></tr></thead><tbody><tr class="alto"><td>Bird's Eye View</td><td>Homografia errada</td><td>Erro no cálculo da faixa</td><td class="num">7</td><td class="num">3</td><td class="num">3</td><td class="num">63</td></tr><tr><td>PID – Direção</td><td>Instabilidade</td><td>Veículo oscilando</td><td class="num">7</td><td class="num">4</td><td class="num">2</td><td class="num">56</td></tr><tr class="alto"><td>YOLO – Detecção</td><td>Falso positivo</td><td>Parada indevida</td><td class="num">7</td><td class="num">3</td><td class="num">3</td><td class="num">63</td></tr><tr><td>Serial – Comunicação</td><td>Perda de frame</td><td>Ângulo não recebido</td><td class="num">8</td><td class="num">2</td><td class="num">2</td><td class="num">32</td></tr><tr><td>Integração Visão+CAN</td><td>Latência excessiva</td><td>Atraso na correção</td><td class="num">6</td><td class="num">3</td><td class="num">3</td><td class="num">54</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">26 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-pert">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item active" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">PERT / CPM</div>
+        </div>
+        <div class="main tight"><h1 class="pt">PERT/CPM <span class="accent">Planejamento do Projeto</span></h1><div class="pt-rule"></div><p class="lead">Planejamento com 22 atividades em 3 frentes paralelas (Controle/Software, Digital Twins, Manufatura) convergindo na Integração. Caminho crítico: A1 &rarr; A2 &rarr; A3 &rarr; A7 &rarr; D1 &rarr; D2 &rarr; D3 (~29 dias úteis).</p><div class="diagram-panel">
+      <div class="dtitle">REDE PERT/CPM · CRONOGRAMA POR ATIVIDADE (TRACEJADO = CAMINHO CRÍTICO)</div>
+      <svg viewBox="0 0 1000 442" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;"><defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#256a8f"/>
+  </marker>
+  <marker id="arrowSilver" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#8b959d"/>
+  </marker>
+</defs><rect x="0" y="26" width="980" height="137.6" fill="#3684ad" opacity="0.07"/><rect x="0" y="26" width="4" height="137.6" fill="#3684ad"/><text x="10" y="39" font-family="Barlow Semi Condensed" font-weight="700" font-size="10.5" fill="#3684ad">CONTROLE/SOFTWARE</text><rect x="0" y="169.6" width="980" height="86.0" fill="#5a9e82" opacity="0.07"/><rect x="0" y="169.6" width="4" height="86.0" fill="#5a9e82"/><text x="10" y="182.6" font-family="Barlow Semi Condensed" font-weight="700" font-size="10.5" fill="#5a9e82">DIGITAL TWINS</text><rect x="0" y="261.6" width="980" height="103.19999999999999" fill="#b3873f" opacity="0.07"/><rect x="0" y="261.6" width="4" height="103.19999999999999" fill="#b3873f"/><text x="10" y="274.6" font-family="Barlow Semi Condensed" font-weight="700" font-size="10.5" fill="#b3873f">MANUFATURA</text><rect x="0" y="370.8" width="980" height="51.599999999999994" fill="#b8524f" opacity="0.07"/><rect x="0" y="370.8" width="4" height="51.599999999999994" fill="#b8524f"/><text x="10" y="383.8" font-family="Barlow Semi Condensed" font-weight="700" font-size="10.5" fill="#b8524f">INTEGRAÇÃO</text><line x1="190.0" y1="20" x2="190.0" y2="428.4" stroke="#d7dce0" stroke-width="1"/><text x="190.0" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#8b959d">0</text><line x1="295.4" y1="20" x2="295.4" y2="428.4" stroke="#d7dce0" stroke-width="1"/><text x="295.4" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#8b959d">5</text><line x1="400.8" y1="20" x2="400.8" y2="428.4" stroke="#d7dce0" stroke-width="1"/><text x="400.8" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#8b959d">10</text><line x1="506.2" y1="20" x2="506.2" y2="428.4" stroke="#d7dce0" stroke-width="1"/><text x="506.2" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#8b959d">15</text><line x1="611.6" y1="20" x2="611.6" y2="428.4" stroke="#d7dce0" stroke-width="1"/><text x="611.6" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#8b959d">20</text><line x1="717.0" y1="20" x2="717.0" y2="428.4" stroke="#d7dce0" stroke-width="1"/><text x="717.0" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#8b959d">25</text><line x1="822.4" y1="20" x2="822.4" y2="428.4" stroke="#d7dce0" stroke-width="1"/><text x="822.4" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#8b959d">30</text><line x1="927.8" y1="20" x2="927.8" y2="428.4" stroke="#d7dce0" stroke-width="1"/><text x="927.8" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#8b959d">35</text><rect x="190.0" y="28.4" width="105.4" height="12.4" rx="2.4" fill="#123a56" stroke="#256a8f" stroke-width="1"/><text x="182" y="38.0" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#f5f8fa">A1</text><text x="242.7" y="38.0" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#f5f8fa">5d</text><rect x="295.4" y="45.6" width="210.8" height="12.4" rx="2.4" fill="#123a56" stroke="#256a8f" stroke-width="1"/><text x="182" y="55.2" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#f5f8fa">A2</text><text x="400.8" y="55.2" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#f5f8fa">10d</text><rect x="506.2" y="62.8" width="105.4" height="12.4" rx="2.4" fill="#123a56" stroke="#256a8f" stroke-width="1"/><text x="182" y="72.4" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#f5f8fa">A3</text><text x="558.9" y="72.4" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#f5f8fa">5d</text><rect x="295.4" y="80.0" width="126.5" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="89.6" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">A4</text><text x="358.6" y="89.6" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">6d</text><rect x="421.9" y="97.2" width="168.6" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="106.8" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">A5</text><text x="506.2" y="106.8" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">8d</text><rect x="590.5" y="114.4" width="84.3" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="124.0" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">A6</text><text x="632.7" y="124.0" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">4d</text><rect x="674.9" y="131.6" width="105.4" height="12.4" rx="2.4" fill="#123a56" stroke="#256a8f" stroke-width="1"/><text x="182" y="141.2" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#f5f8fa">A7</text><text x="727.6" y="141.2" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#f5f8fa">5d</text><rect x="780.3" y="148.8" width="84.3" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="158.4" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">A8</text><text x="822.4" y="158.4" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">4d</text><rect x="295.4" y="172.0" width="63.2" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="181.6" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">B1</text><text x="327.0" y="181.6" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">3d</text><rect x="295.4" y="189.2" width="63.2" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="198.8" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">B2</text><text x="327.0" y="198.8" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">3d</text><rect x="295.4" y="206.4" width="63.2" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="216.0" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">B3</text><text x="327.0" y="216.0" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">3d</text><rect x="295.4" y="223.6" width="63.2" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="233.2" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">B4</text><text x="327.0" y="233.2" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">3d</text><rect x="358.6" y="240.8" width="42.2" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="250.4" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">B5</text><text x="379.7" y="250.4" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">2d</text><rect x="358.6" y="264.0" width="105.4" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="273.6" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">C1</text><text x="411.4" y="273.6" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">5d</text><rect x="358.6" y="281.2" width="126.5" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="290.8" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">C2</text><text x="421.9" y="290.8" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">6d</text><rect x="358.6" y="298.4" width="147.6" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="308.0" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">C3</text><text x="432.4" y="308.0" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">7d</text><rect x="358.6" y="315.6" width="84.3" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="325.2" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">C4</text><text x="400.8" y="325.2" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">4d</text><rect x="358.6" y="332.8" width="63.2" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="342.4" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">C5</text><text x="390.3" y="342.4" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">3d</text><rect x="506.2" y="350.0" width="63.2" height="12.4" rx="2.4" fill="#f5f7f8" stroke="#c7d0d6" stroke-width="1"/><text x="182" y="359.6" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#181e24">C6</text><text x="537.8" y="359.6" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#181e24">3d</text><rect x="780.3" y="373.2" width="84.3" height="12.4" rx="2.4" fill="#123a56" stroke="#256a8f" stroke-width="1"/><text x="182" y="382.8" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#f5f8fa">D1</text><text x="822.4" y="382.8" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#f5f8fa">4d</text><rect x="864.6" y="390.4" width="63.2" height="12.4" rx="2.4" fill="#123a56" stroke="#256a8f" stroke-width="1"/><text x="182" y="400.0" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#f5f8fa">D2</text><text x="896.2" y="400.0" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#f5f8fa">3d</text><rect x="927.8" y="407.6" width="42.2" height="12.4" rx="2.4" fill="#123a56" stroke="#256a8f" stroke-width="1"/><text x="182" y="417.2" text-anchor="end" font-family="JetBrains Mono" font-weight="600" font-size="8.6" fill="#f5f8fa">D3</text><text x="948.9" y="417.2" text-anchor="middle" font-family="JetBrains Mono" font-size="7.8" fill="#f5f8fa">2d</text><path d="M295.4,34.6 C313.4,34.6 277.4,51.8 295.4,51.8" fill="none" stroke="#256a8f" stroke-width="1.4" stroke-dasharray="3,2" marker-end="url(#arrow)"/><path d="M506.2,51.8 C524.2,51.8 488.2,69.0 506.2,69.0" fill="none" stroke="#256a8f" stroke-width="1.4" stroke-dasharray="3,2" marker-end="url(#arrow)"/><path d="M611.6,69.0 C629.6,69.0 656.9,137.8 674.9,137.8" fill="none" stroke="#256a8f" stroke-width="1.4" stroke-dasharray="3,2" marker-end="url(#arrow)"/><path d="M780.3,137.8 C798.3,137.8 762.3,379.4 780.3,379.4" fill="none" stroke="#256a8f" stroke-width="1.4" stroke-dasharray="3,2" marker-end="url(#arrow)"/><path d="M864.6,379.4 C882.6,379.4 846.6,396.6 864.6,396.6" fill="none" stroke="#256a8f" stroke-width="1.4" stroke-dasharray="3,2" marker-end="url(#arrow)"/><path d="M927.8,396.6 C945.8,396.6 909.8,413.8 927.8,413.8" fill="none" stroke="#256a8f" stroke-width="1.4" stroke-dasharray="3,2" marker-end="url(#arrow)"/></svg>
+    </div><div class="legend" style="margin-top:8px;">
+  <span><span class="dot" style="background:#3684ad;"></span>Controle / Software</span>
+  <span><span class="dot" style="background:#5a9e82;"></span>Digital Twins</span>
+  <span><span class="dot" style="background:#b3873f;"></span>Manufatura</span>
+  <span><span class="dot" style="background:#b8524f;"></span>Integração</span>
+</div></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">27 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item active" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">PERT / CPM</div>
+        </div>
+        <div class="main"><h1 class="pt">Atividades <span class="accent">e Predecessoras</span></h1><div class="pt-rule"></div><table class="spec compact"><colgroup><col style="width:8%"><col style="width:40%"><col style="width:20%"><col style="width:10%"><col style="width:22%"></colgroup><thead><tr><th>Cód.</th><th>Atividade</th><th>Frente</th><th>Dias</th><th>Predecessoras</th></tr></thead><tbody><tr><td>A1</td><td>Definição de requisitos e arquitetura</td><td>Controle/Software</td><td>5</td><td>–</td></tr><tr><td>A2</td><td>Sistema de visão computacional</td><td>Controle/Software</td><td>10</td><td>A1</td></tr><tr><td>A3</td><td>Algoritmo PID de direção</td><td>Controle/Software</td><td>5</td><td>A2</td></tr><tr><td>A4</td><td>Comunicação Serial/CAN</td><td>Controle/Software</td><td>6</td><td>A1</td></tr><tr><td>A5</td><td>Programação ATmega328P</td><td>Controle/Software</td><td>8</td><td>A4</td></tr><tr><td>A6</td><td>Testes individuais (motores, servo)</td><td>Controle/Software</td><td>4</td><td>A5</td></tr><tr><td>A7</td><td>Integração hardware + visão</td><td>Controle/Software</td><td>5</td><td>A3, A6</td></tr><tr><td>A8</td><td>Testes integrados + ajuste PID</td><td>Controle/Software</td><td>4</td><td>A7</td></tr><tr><td>B1</td><td>Modelagem 3D – CRM-001</td><td>Digital Twins</td><td>3</td><td>A1</td></tr><tr><td>B2</td><td>Modelagem 3D – PIN-001</td><td>Digital Twins</td><td>3</td><td>A1</td></tr><tr><td>B3</td><td>Modelagem 3D – CRW-001</td><td>Digital Twins</td><td>3</td><td>A1</td></tr><tr><td>B4</td><td>Modelagem 3D – ESV-001 e Eixo</td><td>Digital Twins</td><td>3</td><td>A1</td></tr><tr><td>B5</td><td>Revisão e aprovação dos modelos</td><td>Digital Twins</td><td>2</td><td>B1–B4</td></tr><tr><td>C1</td><td>Usinagem – ESV-001</td><td>Manufatura</td><td>5</td><td>B4</td></tr><tr><td>C2</td><td>Usinagem – CRW-001</td><td>Manufatura</td><td>6</td><td>B3</td></tr><tr><td>C3</td><td>Usinagem – PIN-001</td><td>Manufatura</td><td>7</td><td>B2</td></tr><tr><td>C4</td><td>Usinagem – CRM-001</td><td>Manufatura</td><td>4</td><td>B1</td></tr><tr><td>C5</td><td>Usinagem – EIX-001</td><td>Manufatura</td><td>3</td><td>B4</td></tr><tr><td>C6</td><td>Inspeção dimensional</td><td>Manufatura</td><td>3</td><td>C1–C5</td></tr><tr><td>D1</td><td>Montagem mecânica + integração elétrica</td><td>Integração</td><td>4</td><td>A7, C6</td></tr><tr><td>D2</td><td>Testes na pista – navegação autônoma</td><td>Integração</td><td>3</td><td>D1, A8</td></tr><tr><td>D3</td><td>Documentação e entrega</td><td>Integração</td><td>2</td><td>D2</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">28 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="page" id="sec-dados">
+      <div class="sidebar">
+      <div class="sb-logo"><img src="images/apex_logo.png"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-nav"><a class="sb-item" href="#sec-sumario"><span class="dot"></span>Sumário</a><a class="sb-item" href="#sec-partida"><span class="dot"></span>Início</a><a class="sb-item" href="#sec-processamento"><span class="dot"></span>Processamento</a><a class="sb-item" href="#sec-propulsao"><span class="dot"></span>Propulsão</a><a class="sb-item" href="#sec-direcao"><span class="dot"></span>Direção</a><a class="sb-item" href="#sec-sensores"><span class="dot"></span>Sensores</a><a class="sb-item" href="#sec-energia"><span class="dot"></span>Energia</a><a class="sb-item" href="#sec-comunicacao"><span class="dot"></span>Comunicação</a><a class="sb-item" href="#sec-software"><span class="dot"></span>Software</a><a class="sb-item" href="#sec-pecas"><span class="dot"></span>Peças Mecânicas</a><a class="sb-item" href="#sec-fmea"><span class="dot"></span>FMEA</a><a class="sb-item" href="#sec-pert"><span class="dot"></span>PERT / CPM</a><a class="sb-item active" href="#sec-dados"><span class="dot"></span>Dados Técnicos</a></div>
+      <div class="sb-foot">
+        <div class="code">APEX-001-2026</div>
+        <div class="team">Apex Team &middot; Engenharia Mecatrônica 4º Ano<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="crumb"><b>Apex Team</b> &nbsp;&middot;&nbsp; Manual de Operação e Desenvolvimento</div>
+          <div class="section-tag">Dados Técnicos</div>
+        </div>
+        <div class="main"><h1 class="pt">Dados Técnicos <span class="accent">Consolidados</span></h1><div class="pt-rule"></div><table class="spec compact"><colgroup><col style="width:18%"><col style="width:22%"><col style="width:60%"></colgroup><thead><tr><th>Sistema</th><th>Parâmetro</th><th>Valor</th></tr></thead><tbody><tr><td>Propulsão</td><td>Motores</td><td>4x RS550 ~30.000 RPM | 4WD</td></tr><tr><td>Propulsão</td><td>Driver</td><td>BTS7960 – 43 A típico, PWM até 25 kHz</td></tr><tr><td>Direção</td><td>Servo</td><td>DS51150-12V – 150 kg&middot;cm / 12 V / IP67</td></tr><tr><td>Direção</td><td>Controle</td><td>PWM 500–2.500 µs / 50–330 Hz</td></tr><tr><td>Direção</td><td>Mecanismo</td><td>Pinhão M=3 z=15 + Cremalheira SAE 1045</td></tr><tr><td>Energia</td><td>Bateria</td><td>LiFePO4 12 V / 60 Ah</td></tr><tr><td>Energia</td><td>BMS</td><td>BMS-40A-4S – 40 A contínuo, 4 células, balanceamento 100 mA</td></tr><tr><td>Energia</td><td>Relé</td><td>DNI 0116 – 40/30 A, 12 V</td></tr><tr><td>Sensores</td><td>Ultrassônico</td><td>4x HC-SR04 – 2 cm a 4 m, 15 graus</td></tr><tr><td>Sensores</td><td>Hall / Encoder</td><td>4x KY-035 (44E) + ímã de neodímio</td></tr><tr><td>Sensores</td><td>Câmera</td><td>USB fisheye 160–180 graus, 2 MP, 30 fps</td></tr><tr><td>Processamento</td><td>Visão</td><td>Notebook – Python 3 / OpenCV</td></tr><tr><td>Processamento</td><td>ECU central</td><td>Arduino Mega 2560 – ATmega2560, 16 MHz</td></tr><tr><td>Processamento</td><td>Periféricos</td><td>6x ATmega328P dedicados</td></tr><tr><td>Comunicação</td><td>Notebook &rarr; Mega</td><td>UART USB 115.200 bps 8N1</td></tr><tr><td>Comunicação</td><td>Mega &rarr; ATmegas</td><td>CAN 2.0B / J1939 – 250 kbps / MCP2515</td></tr><tr><td>Software</td><td>Visão</td><td>Python + OpenCV – bird's eye view + PID</td></tr><tr><td>Software</td><td>IA</td><td>YOLO – dataset personalizado</td></tr><tr><td>Software</td><td>Firmware</td><td>C++ / Arduino Framework</td></tr><tr><td>Mecânica</td><td>Fabricação</td><td>CNC SAE 1045 + Impressão 3D PLA</td></tr><tr><td>Mecânica</td><td>Norma</td><td>NBR 6158 – IT8 | Ra ≤ 3,2 µm</td></tr><tr><td>Equipe</td><td>Time</td><td>Apex Team – FIAP Mecatrônica 4º Ano</td></tr><tr><td>Projeto</td><td>Desafio</td><td>Mercedes-Benz 2026 | São Paulo – SP</td></tr></tbody></table></div>
+        <div class="footbar">
+          <div>Apex Team &middot; Manual de Operação e Desenvolvimento</div>
+          <div class="pageno">29 · APEX-001-2026</div>
+        </div>
+      </div>
+    </div><div class="cover" style="justify-content:center;">
+  <div class="left" style="width:100%; align-items:center; text-align:center; padding:0; justify-content:center;">
+    <img class="logo" src="images/apex_logo.png" style="margin:0 auto 34px auto;">
+    <div class="rule" style="margin:0 auto 26px auto;"></div>
+    <div class="subtitle" style="max-width:560px;">Apex Team &middot; Manual de Operação e Desenvolvimento<br>FIAP &middot; Desafio Mercedes-Benz 2026</div>
+    <div class="meta" style="text-align:center;">APEX-001-2026</div>
+  </div>
+</div>
+<button class="print-fab" onclick="window.print()" title="Abre a caixa de impressao do navegador -- escolha 'Salvar como PDF'.">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6v-7z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  Gerar PDF
+</button>
+</body>
+</html>
