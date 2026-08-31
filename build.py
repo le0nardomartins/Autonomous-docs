@@ -46,7 +46,7 @@ add(cover)
 # ================================================================== #
 sumario_body = title("Sumário") + lead(
     "Este manual de operação e desenvolvimento descreve todas as funções e componentes do veículo "
-    "autônomo Tony Tunado, desenvolvido como resposta ao desafio proposto pela Mercedes-Benz ao 4º ano "
+    "autônomo Apex Team, desenvolvido como resposta ao desafio proposto pela Mercedes-Benz ao 4º ano "
     "de Engenharia Mecatrônica da FIAP em 2026."
 )
 
@@ -57,9 +57,9 @@ add(page("sumario", "Sumário", 2, sumario_body))
 # ================================================================== #
 # PAGE 4 · PARTIDA RÁPIDA (intro)
 # ================================================================== #
-p4 = title("Início", sub="Bem-vindo ao Tony Tunado")
+p4 = title("Início", sub="Bem-vindo ao Apex Team")
 p4 += lead(
-    "O Tony Tunado é um veículo autônomo em escala desenvolvido pela Apex Team · time de alunos do 4º ano "
+    "O Apex Team é um veículo autônomo em escala desenvolvido por uma equipe de alunos do 4º ano "
     "de Engenharia Mecatrônica da FIAP · como resposta ao desafio proposto pela Mercedes-Benz em 2026. "
     "O projeto integra visão computacional, inteligência artificial, controle embarcado, manufatura CNC e "
     "impressão 3D."
@@ -68,7 +68,7 @@ p4 += h2("O veículo é capaz de:")
 p4 += '''<ul class="checklist">
   <li>Seguir autonomamente uma pista delimitada por faixas laterais brancas</li>
   <li>Detectar e interpretar placas de sinalização viária (modelo YOLO)</li>
-  <li>Identificar pedestres e obstáculos via 4 sensores ultrassônicos HC-SR04</li>
+  <li>Identificar pedestres e obstáculos via 3 sensores ultrassônicos HC-SR04</li>
   <li>Realizar missões de entrega autônoma ponto a ponto</li>
   <li>Comunicar subsistemas via protocolo CAN J1939 · padrão automotivo SAE</li>
 </ul>'''
@@ -80,7 +80,7 @@ add(page("partida", "Início", 3, p4))
 # ================================================================== #
 # PAGE 5 · PARTIDA RÁPIDA (guia + dicas)
 # ================================================================== #
-p5 = title("Arquitetura Geral", sub="Resumo das principais funcionalidades do Tony Tunado para orientação rápida do operador.")
+p5 = title("Arquitetura Geral", sub="Resumo das principais funcionalidades do Apex Team para orientação rápida do operador.")
 p5 += diagram(sd.architecture(), "ARQUITETURA GERAL DO SISTEMA", viewbox="0 0 1000 276")
 p5 += table(
     ["Etapa", "Descrição", "Componente"],
@@ -91,7 +91,7 @@ p5 += table(
         ["4. Transmissão", "Ângulo de correção via Serial 115.200 bps", "PySerial"],
         ["5. CAN J1939", "Mega repassa comandos ao barramento a 250 kbps", "Arduino Mega"],
         ["6. Atuação", "Servo corrige direção; RS550 ajusta velocidade", "ATmegas + BTS7960"],
-        ["7. Monitoramento", "HC-SR04 detectam obstáculos; Hall mede velocidade", "ATmegas dedicados"],
+        ["7. Monitoramento", "HC-SR04 avaliam zonas e travam o veículo; Hall mede velocidade", "ATmega328P dedicado + ATmegas CAN"],
     ], compact=True, col_widths=["16%","56%","28%"]
 )
 p5 += h2("Dicas antes de ligar")
@@ -99,7 +99,7 @@ p5 += '''<ul class="checklist">
   <li>Certifique-se de que a bateria LiFePO4 está carregada (BMS-40A-4S deve estar em estado normal)</li>
   <li>Conecte o notebook ao Arduino Mega via USB antes de ligar a bateria principal</li>
   <li>Posicione o veículo dentro da pista antes de iniciar o script Python</li>
-  <li>Verifique se todos os 6 ATmega328P estão respondendo no barramento CAN antes da largada</li>
+  <li>Verifique se todos os 4 ATmega328P estão respondendo no barramento CAN antes da largada</li>
 </ul>'''
 add(page("partida", "Início", 4, p5))
 
@@ -139,22 +139,28 @@ add(page("processamento", "Processamento", 5, p6))
 # ================================================================== #
 # PAGE 7 · PROCESSAMENTO (ATmega328P modules)
 # ================================================================== #
-p7 = title("Periféricos", accent="6 Módulos ATmega328P")
+p7 = title("Periféricos", accent="4 Módulos ATmega328P")
 p7 += lead("Cada função crítica do veículo é isolada em um módulo dedicado baseado em ATmega328P, todos "
     "conectados ao Arduino Mega pelo barramento CAN 2.0B / J1939. Isso garante que uma falha de firmware em "
     "um módulo não derrube o sistema inteiro.")
-p7 += diagram(sd.atmega_modules(), "6 MÓDULOS ATMEGA328P · MAPA DE FUNÇÕES E ENDEREÇOS", viewbox="0 0 966 240")
+p7 += diagram(sd.atmega_modules(), "4 MÓDULOS ATMEGA328P · MAPA DE FUNÇÕES", viewbox="0 0 966 240")
 p7 += table(
-    ["Módulo", "Função", "Source Address"],
+    ["Módulo", "Função"],
     [
-        ["PCB Motores Traseiros", "Controle de tração traseira – BTS7960", "0x10"],
-        ["PCB Motores Dianteiros", "Controle de tração dianteira – BTS7960", "0x11"],
-        ["PCB Sinalização", "LEDs RGB e lanternas", "0x20"],
-        ["PCB Encoders", "Leitura Hall + velocidade por roda", "0x30"],
-        ["PCB Ultrassônicos", "Leitura dos 4 HC-SR04", "0x40"],
-        ["PCB BMS", "Monitoramento da bateria", "0x50"],
-    ], compact=True, col_widths=["30%","52%","18%"]
+        ["PCB Motores Lado Direito", "Tração + encoder (Hall) do lado direito – BTS7960"],
+        ["PCB Motores Lado Esquerdo", "Tração + encoder (Hall) do lado esquerdo – BTS7960"],
+        ["PCB Sinalização", "LEDs RGB e lanternas"],
+        ["PCB BMS", "Monitoramento da bateria"],
+    ], compact=True, col_widths=["34%","66%"]
 )
+p7 += callout("info", "Source addresses e PGNs de cada módulo estão centralizados na Matriz CAN, na seção "
+    "Comunicação.")
+p7 += h2("Placa Base dos Módulos")
+p7 += lead("Os 4 módulos compartilham o mesmo desenho de PCB, variando apenas o firmware gravado em cada ATmega328P.")
+p7 += imgrow([
+    bare("images/PBC_1.png", h=130),
+    bare("images/PBC_2.png", h=130),
+], cols=2)
 add(page("processamento", "Processamento", 6, p7))
 
 # ================================================================== #
@@ -199,8 +205,9 @@ p9 += table(
         ["Controle EMI", "Interruptor alto canal-P (sem bomba de carga)"],
     ], compact=True, col_widths=["40%","60%"]
 )
-p9 += callout("info", "Um driver BTS7960 é usado por eixo (dianteiro e traseiro), cada um comandado por um "
-    "ATmega328P dedicado · ver mapa de módulos na seção Processamento.")
+p9 += callout("info", "Um driver BTS7960 é usado por roda (4 no total), sempre em pares · cada par (lado "
+    "direito ou lado esquerdo) é comandado por um único ATmega328P dedicado · ver mapa de módulos na seção "
+    "Processamento.")
 add(page("propulsao", "Propulsão", 8, p9))
 
 # ================================================================== #
@@ -211,7 +218,8 @@ p10 += h2("Servo DS51150-12V")
 p10 += imgrow([
     bare("images/servo_ds51150.png", h=150),
     pending("Servo montado no veículo", "Foto do servo instalado no conjunto de direção · a equipe vai enviar em breve", tall=False),
-], cols=2)
+    pending("Localização no chassi", "Foto do veículo indicando onde o servo fica montado no conjunto de direção · a equipe vai enviar em breve", tall=False),
+], cols=3)
 p10 += table(
     ["Parâmetro", "10 V", "12 V", "12,6 V", "Unidade"],
     [
@@ -230,9 +238,11 @@ p10 += table(
         ["Proteção", "IP67"],
         ["Tensão operacional", "9–12,6 V"],
         ["Sinal de controle", "PWM 500–2.500 µs / 50–330 Hz"],
-        ["Ângulo de operação", "180 ou 270 graus"],
+        ["Ângulo de operação", "180 graus (variante usada no projeto · também disponível em 270 graus)"],
     ], compact=True, col_widths=["40%","60%"]
 )
+p10 += callout("info", "O projeto utiliza a variante de 180 graus do DS51150-12V, que cobre o curso de "
+    "esterçamento necessário para a direção do veículo.")
 add(page("direcao", "Direção", 9, p10))
 
 # ================================================================== #
@@ -260,7 +270,11 @@ add(page("direcao", "Direção", 10, p11))
 # ================================================================== #
 p12 = title("Hardware", accent="Sensores")
 p12 += h2("Sensor Ultrassônico HC-SR04")
-p12 += imgrow([bare("images/sensor_hcsr04.png", h=190)], cols=3)
+p12 += imgrow([
+    bare("images/sensor_hcsr04.png", h=150),
+    pending("Sensores montados no veículo", "Foto dos 3 HC-SR04 instalados na frente do veículo · a equipe vai enviar em breve", tall=False),
+    pending("Localização no chassi", "Foto do veículo indicando a posição dos 3 sensores (frontal, lateral direita e lateral esquerda) · a equipe vai enviar em breve", tall=False),
+], cols=3)
 p12 += table(
     ["Parâmetro", "Especificação"],
     [
@@ -270,22 +284,25 @@ p12 += table(
         ["Alcance", "2 cm – 4 m &middot; Ângulo: 15 graus"],
         ["Trigger", "Pulso TTL 10 µs"],
         ["Fórmula de distância", "µs / 58 = cm &middot; ciclo mín.: 60 ms"],
-        ["Quantidade", "4 unidades (frente, trás, esquerda, direita)"],
+        ["Quantidade", "3 unidades (frontal, lateral direita, lateral esquerda)"],
     ], compact=True, col_widths=["36%","64%"]
 )
-p12 += callout("info", "Os quatro sensores HC-SR04 são lidos pelo módulo PCB Ultrassônicos (SA 0x40), que "
-    "publica as quatro distâncias no barramento CAN via PGN 0xFF30 a cada ciclo de varredura.")
+p12 += callout("info", "Os 3 sensores HC-SR04 são lidos por um ATmega328P dedicado (fora do barramento CAN), "
+    "que avalia a distância de cada um em zonas de segurança e publica essas zonas via Serial dedicada "
+    "(Serial1) ao Arduino Mega, junto com o status PARE/PROSSIGA · ver tabela de zonas na seção Software "
+    "&middot; Firmware Embarcado.")
 add(page("sensores", "Sensores", 11, p12))
 
 # ================================================================== #
-# PAGE 13 · SENSORES (Hall + Câmera)
+# PAGE 13 · SENSORES (Hall KY-035)
 # ================================================================== #
-p13 = title("Hall KY-035", accent="e Câmera Fisheye")
+p13 = title("Hardware", accent="Sensor Hall KY-035")
 p13 += h2("Sensor de Efeito Hall KY-035 · Encoder de Roda")
 p13 += imgrow([
     bare("images/sensor_ky035.png", h=150),
-    pending("Ímã de neodímio no eixo", "Foto do ímã fixado no eixo do motor · a equipe vai enviar em breve"),
-], cols=2)
+    pending("Ímã de neodímio no eixo", "Foto do ímã fixado no eixo do motor · a equipe vai enviar em breve", tall=False),
+    pending("Localização no chassi", "Foto do veículo indicando onde os 4 sensores Hall ficam montados, um por roda · a equipe vai enviar em breve", tall=False),
+], cols=3)
 p13 += table(
     ["Parâmetro", "Especificação"],
     [
@@ -298,12 +315,32 @@ p13 += table(
         ["Função", "Conta pulsos dos ímãs de neodímio no eixo do motor"],
     ], compact=True, col_widths=["36%","64%"]
 )
-p13 += h2("Câmera USB Fisheye")
-p13 += imgrow([
-    bare("images/camera_fisheye.png", h=150),
-    pending("Câmera montada no veículo", "Foto da câmera instalada no chassi · a equipe vai enviar em breve"),
-], cols=2)
+p13 += callout("info", "Cada sensor Hall é lido pela PCB Motores do respectivo lado (direito ou esquerdo), "
+    "que agrega a velocidade das duas rodas daquele lado antes de publicar a telemetria na CAN.")
 add(page("sensores", "Sensores", 12, p13))
+
+# ================================================================== #
+# PAGE 14 · SENSORES (Câmera Fisheye)
+# ================================================================== #
+p13b = title("Hardware", accent="Câmera USB Fisheye")
+p13b += h2("Câmera USB Fisheye")
+p13b += imgrow([
+    bare("images/camera_fisheye.png", h=150),
+    pending("Câmera montada no veículo", "Foto da câmera instalada no chassi · a equipe vai enviar em breve", tall=False),
+    pending("Localização no chassi", "Foto do veículo indicando onde a câmera fica montada · a equipe vai enviar em breve", tall=False),
+], cols=3)
+p13b += table(
+    ["Parâmetro", "Especificação"],
+    [
+        ["Tipo", "Câmera USB fisheye"],
+        ["Campo de visão", "160–180 graus"],
+        ["Resolução", "2 MP"],
+        ["Taxa de quadros", "Até 30 fps"],
+        ["Interface", "USB 2.0"],
+        ["Função", "Captura da pista para o pipeline de visão computacional (bird's eye view + detecção de faixas/placas)"],
+    ], compact=True, col_widths=["36%","64%"]
+)
+add(page("sensores", "Sensores", 13, p13b))
 
 # ================================================================== #
 # PAGE 14 · ENERGIA (Bateria + BMS)
@@ -333,15 +370,17 @@ p14 += table(
         ["Temperatura de operação", "-40", "25", "85", "°C"],
     ], compact=True, numeric_cols={1,2,3}, col_widths=["34%","16%","16%","16%","18%"]
 )
-add(page("energia", "Energia", 13, p14))
+add(page("energia", "Energia", 14, p14))
 
 # ================================================================== #
-# PAGE 15 · ENERGIA (Relé)
+# PAGE 15 · ENERGIA (Chave geral / relé DNI 0116)
 # ================================================================== #
-p15 = title("Relé Auxiliar Reversor", accent="DNI 0116")
-p15 += lead("O relé reversor universal comanda a inversão de polaridade dos motores traseiros, permitindo a "
-    "marcha à ré do veículo sob comando do módulo PCB Motores Traseiros.")
-p15 += table(
+p14b = title("Chave Geral da Bateria", accent="Relé DNI 0116")
+p14b += lead("O DNI 0116 (vendido como 'relé reversor universal') é usado aqui como chave geral de energia: "
+    "conecta ou desconecta a bateria LiFePO4 do restante do circuito sob comando eletrônico, funcionando como "
+    "um kill switch remoto do pack &mdash; não tem relação com o sentido de giro dos motores, que é controlado "
+    "inteiramente por firmware (ver seção Software &middot; Firmware Embarcado).")
+p14b += table(
     ["Parâmetro", "Especificação"],
     [
         ["Modelo", "DNI 0116 – Relé reversor universal"],
@@ -351,32 +390,60 @@ p15 += table(
         ["Terminal 87 / 87a", "Contato NA / NF"],
     ], compact=True, col_widths=["36%","64%"]
 )
-p15 += callout("info", "O relé é acionado eletronicamente pelo módulo de tração traseira · nunca opere a "
-    "reversão manualmente com o veículo em movimento.")
-add(page("energia", "Energia", 14, p15))
+p14b += callout("info", "O contato NA (87) só libera energia da bateria para o resto do veículo quando a "
+    "bobina é energizada · nunca desconecte a bateria manualmente com o veículo em movimento.")
+add(page("energia", "Energia", 15, p14b))
 
 # ================================================================== #
-# PAGE 16 · COMUNICAÇÃO (CAN diagram + Serial)
+# PAGE 16 · COMUNICAÇÃO (Serial · Notebook/ATmega Segurança ↔ Mega)
 # ================================================================== #
-p16 = title("Comunicação")
-p16 += diagram(sd.can_network(), "TOPOLOGIA DA REDE CAN J1939 · 7 NÓS", viewbox="0 0 1150 220")
-p16 += h2("Serial USB · Notebook e Arduino Mega")
+p16 = title("Comunicação Serial", accent="Notebook e ATmega328P de Segurança ↔ Mega")
+p16 += lead("Duas ligações seriais independentes chegam ao Arduino Mega: a USB com o notebook (comando + "
+    "telemetria) e a Serial1 dedicada com o ATmega328P da camada de segurança.")
+p16 += h2("Notebook &rarr; Arduino Mega · comando")
+p16 += table(
+    ["Campo", "Tipo", "Significado"],
+    [
+        ["servo", "int, 0–180", "90 = centro; ângulo do PID somado a 90"],
+        ["speed", "float", "Velocidade efetiva (m/s); 0 quando parado, em STOP ou vermelho"],
+        ["stop", "bool", "True força parada imediata"],
+        ["tl", "int, -1 a 2", "Estado do semáforo: nenhum/vermelho/amarelo/verde"],
+        ["lights", "int, 0/1", "Iluminação do veículo"],
+    ], compact=True, col_widths=["16%","20%","64%"]
+)
+p16 += lead("Pacote serializado em JSON, enviado a cada 'Intervalo de comando' (200 ms por padrão) &middot; "
+    "ver detalhes do cálculo do PID na seção Software.")
+p16 += h2("Arduino Mega &rarr; Notebook · telemetria")
+p16 += lead("O Mega agrega a telemetria recebida via CAN dos módulos (RPM/corrente/status dos motores, "
+    "estado da bateria via BMS, estado dos LEDs) e repassa ao notebook pela mesma porta serial, para exibição "
+    "ao vivo no painel de controle (aba 'Informações do Carro').")
 p16 += table(
     ["Parâmetro", "Especificação"],
     [
         ["Protocolo", "UART (Serial USB)"],
         ["Baud rate", "115.200 bps"],
         ["Formato", "8N1 (8 bits, sem paridade, 1 stop bit)"],
-        ["Usos", "Ângulo PID; logs; comandos de teste"],
         ["Biblioteca Python", "PySerial"],
     ], compact=True, col_widths=["36%","64%"]
 )
-add(page("comunicacao", "Comunicação", 15, p16))
+p16 += h2("ATmega328P (Segurança) &rarr; Arduino Mega · Serial1 dedicada")
+p16 += table(
+    ["Campo", "Tipo", "Significado"],
+    [
+        ["status", "enum: PARE / PROSSIGA", "Resultado da avaliação das zonas dos 3 HC-SR04"],
+    ], compact=True, col_widths=["16%","24%","60%"]
+)
+p16 += callout("aviso", "A camada de segurança contra obstáculos (3x HC-SR04) roda num ATmega328P dedicado à "
+    "parte, fora do barramento CAN · ele só envia PARE/PROSSIGA ao Arduino Mega, num link one-way pela "
+    "Serial1, sem SA nem PGN.")
+add(page("comunicacao", "Comunicação", 16, p16))
 
 # ================================================================== #
-# PAGE 17 · COMUNICAÇÃO (CAN table + PGNs)
+# PAGE 16 · COMUNICAÇÃO (CAN interna)
 # ================================================================== #
-p17 = title("CAN 2.0B / J1939", accent="Arduino Mega e ATmegas")
+p17 = title("Comunicação Interna", accent="Barramento CAN 2.0B / J1939")
+p17 += lead("Rede interna que liga o Arduino Mega aos 4 módulos ATmega328P do veículo &middot; câmera, "
+    "notebook e o ATmega328P de segurança ficam de fora dela (ver Comunicação Serial).")
 p17 += table(
     ["Parâmetro", "Especificação"],
     [
@@ -384,23 +451,25 @@ p17 += table(
         ["Velocidade", "250 kbps"],
         ["Transceptor", "MCP2515 via SPI &middot; cristal 8 MHz"],
         ["Topologia", "Barramento linear &middot; terminação 120 Ω"],
-        ["Nós na rede", "7 (1 Mega mestre + 6 ATmegas)"],
+        ["Nós na rede", "5 (1 Mega mestre + 4 ATmegas)"],
     ], compact=True, col_widths=["36%","64%"]
 )
-p17 += h2("PGNs e Source Addresses")
+p17 += diagram(sd.can_network(), "TOPOLOGIA DA REDE CAN J1939 · 5 NÓS", viewbox="0 0 1150 220")
+p17 += h2("Matriz CAN · PGNs, Source Addresses e Roteamento")
 p17 += table(
-    ["Nó / Módulo", "Source Address", "PGN", "Descrição"],
+    ["Módulo (transmissor)", "SA", "PGN", "O que envia", "Recebido por", "Como envia"],
     [
-        ["Arduino Mega (Mestre)", "0x01", "0xFEF1", "Comando de tração aos motores"],
-        ["PCB Motores Traseiros", "0x10", "0xFF00", "Telemetria: RPM, corrente, status"],
-        ["PCB Motores Dianteiros", "0x11", "0xFF00", "Telemetria: RPM, corrente, status"],
-        ["PCB Sinalização", "0x20", "0xFF10", "Estado LEDs e lanternas"],
-        ["PCB Encoders", "0x30", "0xFF20", "Velocidade por roda (Hall)"],
-        ["PCB Ultrassônicos", "0x40", "0xFF30", "Distâncias 4x HC-SR04"],
-        ["PCB BMS", "0x50", "0xFF40", "Tensão, corrente e temperatura"],
-    ], compact=True, col_widths=["26%","16%","14%","44%"]
+        ["Arduino Mega (Mestre)", "0x01", "0xFEF1", "Comando de tração (ângulo/velocidade)", "PCB Motores Lado Direito e Lado Esquerdo", "Broadcast periódico"],
+        ["PCB Motores Lado Direito", "0x10", "0xFF00", "Telemetria: RPM, corrente, status, velocidade (Hall)", "Arduino Mega (Mestre)", "Broadcast periódico"],
+        ["PCB Motores Lado Esquerdo", "0x11", "0xFF00", "Telemetria: RPM, corrente, status, velocidade (Hall)", "Arduino Mega (Mestre)", "Broadcast periódico"],
+        ["PCB Sinalização", "0x20", "0xFF10", "Estado dos LEDs e lanternas", "Arduino Mega (Mestre)", "Broadcast periódico"],
+        ["PCB BMS", "0x50", "0xFF40", "Tensão, corrente e temperatura da bateria", "Arduino Mega (Mestre)", "Broadcast periódico"],
+    ], compact=True, col_widths=["19%","7%","9%","28%","22%","15%"]
 )
-add(page("comunicacao", "Comunicação", 16, p17))
+p17 += callout("info", "Em CAN 2.0B / J1939 toda mensagem é broadcast no barramento – qualquer nó pode escutar. "
+    "\"Recebido por\" indica o consumidor funcional de cada PGN: o Arduino Mega agrega a telemetria dos módulos "
+    "e repassa ao notebook via serial, e distribui o comando de tração às duas PCBs de motor.")
+add(page("comunicacao", "Comunicação", 17, p17))
 
 # ================================================================== #
 # PAGE 17 · SOFTWARE (Visão computacional)
@@ -416,10 +485,10 @@ p18 += table(
     ["Etapa", "Técnica", "Saída"],
     [
         ["1. Captura", "OpenCV VideoCapture (câmera USB)", "Frame bruto (BGR)"],
-        ["2. Perspectiva", "4 pontos de controle + getPerspectiveTransform", "ROI 320×240 em vista aérea"],
+        ["2. Perspectiva", "Bird's Eye View &middot; Extração do ROI e transformada de perspectiva", "ROI 320×240 em vista aérea"],
         ["3. Pré-processamento", "Conversão para escala de cinza", "Imagem em tons de cinza"],
-        ["4. Binarização", "Threshold fixo, ajustável no painel de controle", "Imagem binária (P&amp;B)"],
-        ["5. Faixas", "Sliding window: 3 janelas horizontais, pixels brancos/coluna", "Posição esq./dir. por janela"],
+        ["4. Binarização", "Threshold ajustável no painel de controle e dashboard web", "Imagem binária (P&amp;B)"],
+        ["5. Faixas", "Sliding window: 3 janelas horizontais, contagem de pixels brancos por coluna", "Posição esq./dir. por janela"],
         ["6. Erro", "Média das janelas válidas vs. centro da imagem", "Erro lateral em pixels"],
         ["7. Controle", "PID reta ou curva, conforme o erro (dual-PID)", "Ângulo de correção (±90°)"],
         ["8. Transmissão", "JSON via Serial 115.200 bps, a cada 200 ms", "servo/velocidade ao Arduino Mega"],
@@ -427,19 +496,11 @@ p18 += table(
 )
 p18 += h2("Painel de Ajuste em Tempo Real")
 p18 += lead(
-    "Todos os parâmetros abaixo são ajustáveis ao vivo, por sliders no painel de controle ou pelo "
+    "Os parâmetros do pipeline (ROI de perspectiva, limiar de binarização, erro de transição entre PID de "
+    "reta e de curva, entre outros) são ajustáveis ao vivo, por sliders no painel de controle ou pelo "
     "dashboard web, e podem ser persistidos em config/config.json."
 )
-p18 += table(
-    ["Parâmetro", "Exemplo salvo", "Efeito"],
-    [
-        ["ROI &middot; Linha superior/inferior", "525 / 385 px", "Largura do topo e da base do trapézio de perspectiva"],
-        ["ROI &middot; Altura sup./inf.", "192 / 286 px", "Posição vertical do topo/base do trapézio na imagem"],
-        ["Limiar de binarização", "217", "Nível de cinza acima do qual um pixel vira 'faixa'"],
-        ["Erro de transição", "12 px", "Limite para trocar entre PID de reta e de curva"],
-    ], compact=True, col_widths=["30%","20%","50%"]
-)
-add(page("software", "Software", 17, p18))
+add(page("software", "Software", 18, p18))
 
 # ================================================================== #
 # PAGE 18 · SOFTWARE (Detecção de faixas · sliding window)
@@ -465,26 +526,28 @@ p18b += table(
     ["Estado", "Condição", "Cálculo do centro"],
     [
         ["both", "As duas faixas válidas", "Média entre esquerda e direita"],
-        ["left", "Só a faixa esquerda válida", "Esquerda + metade do track_size (estimado)"],
-        ["right", "Só a faixa direita válida", "Direita − metade do track_size (estimado)"],
+        ["left", "Só a faixa esquerda válida", "Esquerda + metade da largura da pista (estimada)"],
+        ["right", "Só a faixa direita válida", "Direita − metade da largura da pista (estimada)"],
         ["none", "Nenhuma faixa válida", "Mantém o último erro conhecido"],
     ], compact=True, col_widths=["14%","40%","46%"]
 )
-p18b += callout("info", "track_size guarda a última largura de pista medida (distância entre as duas faixas) "
-    "sempre que ambas são detectadas ao mesmo tempo. Quando só uma faixa aparece, essa memória é usada "
-    "para estimar onde a outra deveria estar, em vez de simplesmente perder a referência.")
+p18b += callout("info", "A largura da pista é salva sempre que as duas faixas são detectadas ao mesmo tempo "
+    "(distância medida entre elas). Quando só uma faixa aparece, esse valor salvo é usado para estimar onde "
+    "a outra deveria estar, em vez de simplesmente perder a referência.")
 p18b += callout("info", "O erro final é a diferença, em pixels, entre o centro calculado da pista e o centro "
     "da imagem. Um círculo verde marca o centro da pista e um vermelho o ponto de referência &mdash; ambos "
     "exibidos ao vivo na aba de câmeras do painel de controle.")
-add(page("software", "Software", 18, p18b))
+add(page("software", "Software", 19, p18b))
 
 # ================================================================== #
 # PAGE 19 · SOFTWARE (Inteligência Artificial · YOLO)
 # ================================================================== #
 p19 = title("Inteligência Artificial", accent="YOLO")
 p19 += lead(
-    "Um modelo YOLOv11 (model/Modelo_3.pt) roda em uma thread própria, independente da visão principal "
-    "&mdash; assim, a inferência (mais lenta) nunca atrasa o laço que dirige o carro."
+    "Um modelo YOLOv11 roda em uma thread própria, independente da visão principal &mdash; assim, a "
+    "inferência (mais lenta) nunca atrasa o laço que dirige o carro. O YOLO detecta apenas 2 classes, placa "
+    "de PARE e semáforo; a cor do semáforo não vem do YOLO &mdash; é decidida por visão computacional "
+    "clássica, no mesmo estilo usado na detecção das faixas."
 )
 p19 += table(
     ["Evento", "Critério de validação", "Ação"],
@@ -500,6 +563,7 @@ p19 += callout("info", "A cor do semáforo é decidida sem uma rede neural dedic
     "faixa com maior brilho médio indica a lâmpada acesa, seguindo o mesmo layout físico do semáforo "
     "(vermelho/amarelo/verde).")
 p19 += h2("Ciclo de Inferência")
+p19 += lead("Os parâmetros abaixo são configuráveis ao vivo pelo painel de controle ou pelo dashboard web.")
 p19 += table(
     ["Parâmetro", "Valor padrão", "Descrição"],
     [
@@ -513,7 +577,7 @@ p19 += table(
 p19 += callout("info", "A thread de sinais lê apenas o frame mais recente compartilhado (protegido por um "
     "lock) e atualiza duas variáveis de estado que o laço principal apenas consulta a cada iteração. Não "
     "existe fila: se a IA ainda está processando, o carro segue com o último estado conhecido, sem travar.")
-add(page("software", "Software", 19, p19))
+add(page("software", "Software", 20, p19))
 
 # ================================================================== #
 # PAGE 20 · SOFTWARE (Controle Dual-PID e protocolo)
@@ -534,33 +598,22 @@ p19b += table(
         ["Saída", "P + I + D, limitada a ±90°", "Ângulo de correção somado a 90° e enviado ao servo"],
     ], compact=True, col_widths=["18%","36%","46%"]
 )
-p19b += callout("info", "Reta vs. curva: quando o erro está dentro do limiar 'Erro de transição' (12 px no "
-    "exemplo salvo), o PID de reta assume, com ganhos mais suaves. Fora desse limiar, o PID de curva "
-    "assume, com ganhos mais agressivos para reagir mais rápido.")
-p19b += h2("Envio ao Arduino Mega")
-p19b += table(
-    ["Campo", "Tipo", "Significado"],
-    [
-        ["servo", "int, 0–180", "90 = centro; ângulo do PID somado a 90"],
-        ["speed", "float", "Velocidade efetiva (m/s); 0 quando parado, em STOP ou vermelho"],
-        ["stop", "bool", "True força parada imediata"],
-        ["tl", "int, -1 a 2", "Estado do semáforo: nenhum/vermelho/amarelo/verde"],
-        ["lights", "int, 0/1", "Iluminação do veículo"],
-    ], compact=True, col_widths=["16%","20%","64%"]
-)
-p19b += lead("O pacote é serializado em JSON e enviado a cada 'Intervalo de comando' (200 ms por padrão) "
-    "via Serial a 115.200 bps.")
-add(page("software", "Software", 20, p19b))
+p19b += callout("info", "A cada ciclo, o sistema compara o erro atual com o limiar 'Erro de transição' (12 px "
+    "no exemplo salvo) e escolhe o PID: erro pequeno &rarr; PID de reta, com ganhos mais suaves; erro grande "
+    "&rarr; PID de curva, com ganhos mais agressivos para reagir mais rápido.")
+add(page("software", "Software", 21, p19b))
 
 # ================================================================== #
 # PAGE 21 · SOFTWARE (Painel de controle e dashboard)
 # ================================================================== #
-p19c = title("Software", accent="Painel de Controle")
+p19c = title("Software", accent="Painel Desktop")
 p19c += lead(
-    "Duas interfaces permitem operar e depurar o veículo em tempo real: um painel desktop com visão ao "
-    "vivo, e um dashboard web para acesso remoto pelo celular."
+    "Duas interfaces permitem operar e depurar o veículo em tempo real: este painel desktop, com visão ao "
+    "vivo, e um dashboard web para acesso remoto pelo celular (próxima página)."
 )
-p19c += h2("Painel Desktop")
+p19c += imgrow([
+    pending("Painel Desktop · visão geral", "Print do painel com as 5 abas visíveis · a equipe vai enviar em breve", tall=True),
+], cols=1)
 p19c += table(
     ["Aba", "Conteúdo"],
     [
@@ -574,19 +627,31 @@ p19c += table(
 p19c += callout("info", "A visualização de câmera nunca compete com o controle do carro: roda em sua própria "
     "janela de atualização (33 ms) e exibe só a imagem mais recente &mdash; frames não consumidos a tempo "
     "são descartados, sem acumular atraso na direção.")
-p19c += h2("Dashboard Web (porta 5000)")
-p19c += table(
+add(page("software", "Software", 22, p19c))
+
+# ================================================================== #
+# PAGE 22b · SOFTWARE (Dashboard Web)
+# ================================================================== #
+p19c2 = title("Software", accent="Dashboard Web")
+p19c2 += lead(
+    "Segunda interface: um servidor web local (porta 5000) que espelha os principais controles do painel "
+    "desktop numa página otimizada para celular."
+)
+p19c2 += imgrow([
+    pending("Dashboard Web · /panel no celular", "Print da tela /panel aberta no navegador do celular · a equipe vai enviar em breve", tall=True),
+], cols=1)
+p19c2 += table(
     ["Rota", "Método", "Função"],
     [
         ["/api/config", "GET / POST", "Lê ou atualiza os parâmetros (ROI, PID, velocidade, confiança dos sinais)"],
         ["/api/dashboard", "GET", "Telemetria simplificada para o Digital Twin (rpm estimado, luz ligada)"],
         ["/api/reset", "POST", "Restaura os parâmetros salvos em config/config.json"],
-        ["/panel", "GET", "Painel HTML simplificado com sliders, otimizado para celular"],
+        ["/panel", "GET", "Painel HTML simplificado com sliders, otimizado para celular &mdash; é a tela da imagem acima"],
     ], compact=True, col_widths=["20%","18%","62%"]
 )
-p19c += callout("info", "O dashboard é liberado no Firewall do Windows automaticamente na primeira execução, "
+p19c2 += callout("info", "O dashboard é liberado no Firewall do Windows automaticamente na primeira execução, "
     "e pode ser aberto no celular lendo um QR Code gerado direto no painel desktop.")
-add(page("software", "Software", 21, p19c))
+add(page("software", "Software", 23, p19c2))
 
 # ================================================================== #
 # PAGE 22 · SOFTWARE (Firmware embarcado)
@@ -614,7 +679,7 @@ p19d += lead(
 )
 p19d += h2("Camada de Segurança Independente")
 p19d += lead(
-    "Um segundo microcontrolador (Arduino UNO) lê 3 sensores ultrassônicos de forma não bloqueante e "
+    "Um segundo microcontrolador (ATmega328P dedicado) lê 3 sensores ultrassônicos de forma não bloqueante e "
     "envia apenas 'PARE' ou 'PROSSIGA' ao Mega por uma serial dedicada (Serial1)."
 )
 p19d += table(
@@ -629,7 +694,7 @@ p19d += callout("aviso", "O Mega só muda de estado (PARE &#8644; PROSSIGA) depo
     "mensagem 10 vezes seguidas do UNO &mdash; um filtro anti-ruído que evita frenagens falsas por leituras "
     "isoladas ruins do sensor. Essa parada por obstáculo é independente do STOP enviado pelo notebook: "
     "qualquer uma das duas pode parar o veículo.")
-add(page("software", "Software", 22, p19d))
+add(page("software", "Software", 24, p19d))
 
 # ================================================================== #
 # PAGE 20 · PEÇAS MECÂNICAS (tabela + conjunto)
@@ -660,7 +725,7 @@ p20 += imgrow([
     icard("images/calota.png", "Calota Apex", h=112),
     icard("images/lanterna.png", "Lanterna", h=112),
 ], cols=4)
-add(page("pecas", "Peças Mecânicas", 23, p20))
+add(page("pecas", "Peças Mecânicas", 25, p20))
 
 # ================================================================== #
 # PAGE 21 · PEÇAS MECÂNICAS (renders + controle dimensional)
@@ -682,121 +747,13 @@ p21 += table(
         ["Rugosidade", "Rugosímetro", "Ra ≤ 3,2 µm"],
     ], compact=True, col_widths=["32%","38%","30%"]
 )
-add(page("pecas", "Peças Mecânicas", 24, p21))
+add(page("pecas", "Peças Mecânicas", 26, p21))
 
 def rpn_row(etapa, falha, efeito, s_, o_, d_):
     rpn = s_*o_*d_
     marker = "__CRIT__" if rpn >= 100 else ("__ALTO__" if rpn >= 60 else None)
     row = [etapa, falha, efeito, str(s_), str(o_), str(d_), str(rpn)]
     return [marker] + row if marker else row
-
-# ================================================================== #
-# PAGE 22 · FMEA (legenda + bloco 1)
-# ================================================================== #
-p22 = title("FMEA", accent="Análise de Modos e Efeitos de Falha")
-p22 += lead("A FMEA cobre três blocos: (1) Manufatura, (2) Eletrônica e Embarcado, (3) Software e IA. "
-    "RPN = S x O x D &nbsp;|&nbsp; Escala AIAG 1–10.")
-p22 += table(
-    ["Faixa RPN", "Prioridade", "Ação"],
-    [
-        ["RPN ≥ 100", "CRÍTICO", "Ação corretiva imediata obrigatória"],
-        ["RPN 60–99", "ALTO", "Ação preventiva antes da demonstração"],
-        ["RPN < 60", "MODERADO", "Monitorar na evolução do projeto"],
-    ], compact=True, col_widths=["22%","20%","58%"]
-)
-p22 += h2("Bloco 1 · Manufatura")
-p22 += table(
-    ["Etapa", "Falha", "Efeito", "S", "O", "D", "RPN"],
-    [
-        rpn_row("Pinhão – Tornear", "Diâm. fora de tolerância", "Folga no engrenamento", 7,3,2),
-        rpn_row("Pinhão – Fresar", "Perfil de dente incorreto", "Vibração e ruído", 8,3,2),
-        rpn_row("Cremalheira – Fresar", "Passo linear incorreto", "Imprecisão de direção", 7,2,2),
-        rpn_row("Suporte Servo – Furar", "Furo fora de posição", "Servo desalinhado", 6,2,2),
-        rpn_row("Inspeção Final", "Corrida radial >0,05 mm", "Vibração no sistema", 7,2,1),
-    ], compact=True, numeric_cols={3,4,5,6}, col_widths=["19%","25%","25%","8%","8%","8%","9%"]
-)
-add(page("fmea", "FMEA", 25, p22))
-
-# ================================================================== #
-# PAGE 23 · FMEA (bloco 2 + bloco 3)
-# ================================================================== #
-p23 = title("Blocos 2 e 3", accent="Eletrônica, Software e IA")
-p23 += h2("Bloco 2 · Eletrônica e Embarcado")
-p23 += table(
-    ["Etapa", "Falha", "Efeito", "S", "O", "D", "RPN"],
-    [
-        rpn_row("Driver BTS7960", "Sobrecorrente", "Queima do driver", 8,3,3),
-        rpn_row("Comunicação CAN", "Perda de mensagem", "Comando não executado", 8,3,2),
-        rpn_row("Servo DS51150", "Não responde ao PWM", "Perda de direção", 9,2,2),
-        rpn_row("Sensor Hall", "Falha de leitura", "Velocidade incorreta", 6,3,2),
-        rpn_row("BMS-40A-4S", "Desconexão por pico", "Perda total de energia", 9,2,2),
-        rpn_row("HC-SR04", "Leitura errônea", "Colisão com obstáculo", 7,4,3),
-    ], compact=True, numeric_cols={3,4,5,6}, col_widths=["19%","25%","25%","8%","8%","8%","9%"]
-)
-p23 += h2("Bloco 3 · Software e IA")
-p23 += table(
-    ["Etapa", "Falha", "Efeito", "S", "O", "D", "RPN"],
-    [
-        rpn_row("Bird's Eye View", "Homografia errada", "Erro no cálculo da faixa", 7,3,3),
-        rpn_row("PID – Direção", "Instabilidade", "Veículo oscilando", 7,4,2),
-        rpn_row("YOLO – Detecção", "Falso positivo", "Parada indevida", 7,3,3),
-        rpn_row("Serial – Comunicação", "Perda de frame", "Ângulo não recebido", 8,2,2),
-        rpn_row("Integração Visão+CAN", "Latência excessiva", "Atraso na correção", 6,3,3),
-    ], compact=True, numeric_cols={3,4,5,6}, col_widths=["19%","25%","25%","8%","8%","8%","9%"]
-)
-add(page("fmea", "FMEA", 26, p23))
-
-# ================================================================== #
-# PAGE 24 · PERT/CPM (diagrama)
-# ================================================================== #
-p24 = title("PERT/CPM", accent="Planejamento do Projeto")
-p24 += lead("Planejamento com 22 atividades em 3 frentes paralelas (Controle/Software, Digital Twins, "
-    "Manufatura) convergindo na Integração. Caminho crítico: A1 &rarr; A2 &rarr; A3 &rarr; A7 &rarr; D1 &rarr; "
-    "D2 &rarr; D3 (~29 dias úteis).")
-gantt_svg, gantt_h = sd.pert_gantt()
-p24 += diagram(gantt_svg, "REDE PERT/CPM · CRONOGRAMA POR ATIVIDADE (TRACEJADO = CAMINHO CRÍTICO)",
-                viewbox=f"0 0 1000 {int(gantt_h)}")
-p24 += '''<div class="legend" style="margin-top:8px;">
-  <span><span class="dot" style="background:#3684ad;"></span>Controle / Software</span>
-  <span><span class="dot" style="background:#5a9e82;"></span>Digital Twins</span>
-  <span><span class="dot" style="background:#b3873f;"></span>Manufatura</span>
-  <span><span class="dot" style="background:#b8524f;"></span>Integração</span>
-</div>'''
-add(page("pert", "PERT / CPM", 27, p24, tight=True))
-
-# ================================================================== #
-# PAGE 25 · PERT/CPM (tabela completa)
-# ================================================================== #
-p25 = title("Atividades", accent="e Predecessoras")
-pert_rows = [
-    ["A1", "Definição de requisitos e arquitetura", "Controle/Software", "5", "–"],
-    ["A2", "Sistema de visão computacional", "Controle/Software", "10", "A1"],
-    ["A3", "Algoritmo PID de direção", "Controle/Software", "5", "A2"],
-    ["A4", "Comunicação Serial/CAN", "Controle/Software", "6", "A1"],
-    ["A5", "Programação ATmega328P", "Controle/Software", "8", "A4"],
-    ["A6", "Testes individuais (motores, servo)", "Controle/Software", "4", "A5"],
-    ["A7", "Integração hardware + visão", "Controle/Software", "5", "A3, A6"],
-    ["A8", "Testes integrados + ajuste PID", "Controle/Software", "4", "A7"],
-    ["B1", "Modelagem 3D – CRM-001", "Digital Twins", "3", "A1"],
-    ["B2", "Modelagem 3D – PIN-001", "Digital Twins", "3", "A1"],
-    ["B3", "Modelagem 3D – CRW-001", "Digital Twins", "3", "A1"],
-    ["B4", "Modelagem 3D – ESV-001 e Eixo", "Digital Twins", "3", "A1"],
-    ["B5", "Revisão e aprovação dos modelos", "Digital Twins", "2", "B1–B4"],
-    ["C1", "Usinagem – ESV-001", "Manufatura", "5", "B4"],
-    ["C2", "Usinagem – CRW-001", "Manufatura", "6", "B3"],
-    ["C3", "Usinagem – PIN-001", "Manufatura", "7", "B2"],
-    ["C4", "Usinagem – CRM-001", "Manufatura", "4", "B1"],
-    ["C5", "Usinagem – EIX-001", "Manufatura", "3", "B4"],
-    ["C6", "Inspeção dimensional", "Manufatura", "3", "C1–C5"],
-    ["D1", "Montagem mecânica + integração elétrica", "Integração", "4", "A7, C6"],
-    ["D2", "Testes na pista – navegação autônoma", "Integração", "3", "D1, A8"],
-    ["D3", "Documentação e entrega", "Integração", "2", "D2"],
-]
-p25 += table(
-    ["Cód.", "Atividade", "Frente", "Dias", "Predecessoras"],
-    pert_rows, compact=True, col_widths=["8%","40%","20%","10%","22%"]
-)
-add(page("pert", "PERT / CPM", 28, p25))
 
 # ================================================================== #
 # PAGE 26 · DADOS TÉCNICOS
@@ -812,13 +769,14 @@ p26 += table(
         ["Direção", "Mecanismo", "Pinhão M=3 z=15 + Cremalheira SAE 1045"],
         ["Energia", "Bateria", "LiFePO4 12 V / 60 Ah"],
         ["Energia", "BMS", "BMS-40A-4S – 40 A contínuo, 4 células, balanceamento 100 mA"],
-        ["Energia", "Relé", "DNI 0116 – 40/30 A, 12 V"],
-        ["Sensores", "Ultrassônico", "4x HC-SR04 – 2 cm a 4 m, 15 graus"],
+        ["Energia", "Chave geral", "Relé DNI 0116 – 40/30 A, 12 V"],
+        ["Sensores", "Ultrassônico", "3x HC-SR04 (frontal + 2 laterais) – 2 cm a 4 m, 15 graus"],
         ["Sensores", "Hall / Encoder", "4x KY-035 (44E) + ímã de neodímio"],
         ["Sensores", "Câmera", "USB fisheye 160–180 graus, 2 MP, 30 fps"],
         ["Processamento", "Visão", "Notebook – Python 3 / OpenCV"],
         ["Processamento", "ECU central", "Arduino Mega 2560 – ATmega2560, 16 MHz"],
-        ["Processamento", "Periféricos", "6x ATmega328P dedicados"],
+        ["Processamento", "Periféricos", "4x ATmega328P dedicados"],
+        ["Processamento", "Segurança", "ATmega328P dedicado (fora da CAN) – Serial1 (PARE/PROSSIGA)"],
         ["Comunicação", "Notebook &rarr; Mega", "UART USB 115.200 bps 8N1"],
         ["Comunicação", "Mega &rarr; ATmegas", "CAN 2.0B / J1939 – 250 kbps / MCP2515"],
         ["Software", "Visão", "Python + OpenCV – bird's eye view + PID"],
@@ -830,7 +788,7 @@ p26 += table(
         ["Projeto", "Desafio", "Mercedes-Benz 2026 | São Paulo – SP"],
     ], compact=True, col_widths=["18%","22%","60%"]
 )
-add(page("dados", "Dados Técnicos", 29, p26))
+add(page("dados", "Dados Técnicos", 27, p26))
 
 # ================================================================== #
 # PAGE 27 · CONTRACAPA
@@ -854,13 +812,11 @@ IDX = [
     ("03", "Propulsão", 7, "propulsao"),
     ("04", "Direção", 9, "direcao"),
     ("05", "Sensores", 11, "sensores"),
-    ("06", "Energia", 13, "energia"),
-    ("07", "Comunicação", 15, "comunicacao"),
-    ("08", "Software", 17, "software"),
-    ("09", "Peças Mecânicas", 23, "pecas"),
-    ("10", "FMEA", 25, "fmea"),
-    ("11", "PERT / CPM", 27, "pert"),
-    ("12", "Dados Técnicos", 29, "dados"),
+    ("06", "Energia", 14, "energia"),
+    ("07", "Comunicação", 16, "comunicacao"),
+    ("08", "Software", 18, "software"),
+    ("09", "Peças Mecânicas", 25, "pecas"),
+    ("10", "Dados Técnicos", 27, "dados"),
 ]
 idx_html = "".join(idx_card(n, label, pno, key) for n, label, pno, key in IDX)
 PAGES_HTML[1] = PAGES_HTML[1].replace("%%IDXGRID%%", idx_html)
@@ -879,7 +835,7 @@ html = f'''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Tony Tunado &middot; Manual de Operação e Desenvolvimento</title>
+<title>Apex Team &middot; Manual de Operação e Desenvolvimento</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>

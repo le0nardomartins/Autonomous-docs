@@ -13,6 +13,7 @@
 @font-face{font-family:'JetBrains Mono';src:url('fonts/jetbrains-mono-latin-600-normal.woff2') format('woff2');font-weight:600;font-style:normal;}
 @font-face{font-family:'JetBrains Mono';src:url('fonts/jetbrains-mono-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal;}
 @font-face{font-family:'Apex Display';src:url('fonts/ApexDisplay.ttf') format('truetype');font-weight:400;font-style:normal;}
+@font-face{font-family:'Ethnocentric';src:url('fonts/Ethnocentric-Regular.otf') format('opentype');font-weight:400;font-style:normal;}
 /* Palette: Grafite + Azul Mercedes */
 :root{
   --graphite-950:#0e1115;
@@ -171,7 +172,7 @@ body{font-family:var(--font-body); color:var(--ink); -webkit-font-smoothing:anti
   border-bottom:2px solid var(--mb-blue-600);
 }
 .topbar .crumb{font-size:10.5px; letter-spacing:.3px; color:var(--ink-faint); font-weight:400;}
-.topbar .crumb b{color:var(--silver-300); font-weight:600;}
+.topbar .crumb b{color:var(--silver-300); font-weight:400; font-family:'Ethnocentric', var(--font-display); letter-spacing:.3px;}
 .topbar .section-tag{
   font-family:var(--font-display); font-weight:700; font-size:12.5px;
   letter-spacing:.6px; color:#fff; text-transform:uppercase;
@@ -338,7 +339,7 @@ table.spec .crit td{background:var(--danger-bg) !important; font-weight:600;}
 }
 .cover .logo{width:126px; margin-bottom:44px; filter:drop-shadow(0 0 4px rgba(90,163,199,.55)) drop-shadow(0 0 16px rgba(90,163,199,.32));}
 .cover .kicker{font-family:var(--font-mono); font-size:11px; letter-spacing:3px; color:var(--mb-blue-300); text-transform:uppercase; margin-bottom:14px;}
-.cover h1{font-family:'Apex Display', var(--font-display); font-weight:400; font-size:76px; line-height:.95; letter-spacing:-1px;}
+.cover h1{font-family:'Ethnocentric', var(--font-display); font-weight:400; font-size:60px; line-height:1.05; letter-spacing:0;}
 .cover .rule{width:220px; height:4px; border-radius:999px; background:linear-gradient(90deg,var(--mb-blue-400),var(--mb-blue-800)); margin:22px 0;}
 .cover .subtitle{font-size:16px; color:var(--silver-300); font-weight:300; letter-spacing:.3px;}
 .cover .meta{margin-top:40px; font-size:10.5px; color:var(--ink-faint); line-height:2.1;}

@@ -1,4 +1,4 @@
-# Tony Tunado: Manual (código-fonte)
+# Apex Team: Manual (código-fonte)
 
 Gerador do manual em Python + HTML/CSS, renderizado para PDF via Playwright (Chromium headless).
 
@@ -11,7 +11,7 @@ Gerador do manual em Python + HTML/CSS, renderizado para PDF via Playwright (Chr
 - `style.css`: todo o visual: cores, tipografia, layout das páginas, tabelas, callouts etc.
 - `images/`: fotos dos componentes e da capa.
 - `fonts/`: fontes (Inter, Barlow Semi Condensed, JetBrains Mono) em `.woff2`, usadas via `@font-face` no CSS.
-- `render.py`: abre `manual.html` no Chromium headless e exporta `outputs/Tony_Tunado_Manual.pdf`
+- `render.py`: abre `manual.html` no Chromium headless e exporta `outputs/Apex_Team_Manual.pdf`
   (sempre sobrescrevendo o PDF anterior nessa pasta).
 - `manual.html`: o manual em HTML puro (autocontido, abre em qualquer navegador). Tem um botão
   "Gerar PDF" fixo no canto: ele só chama `window.print()`; some automaticamente na hora de imprimir/exportar.
@@ -34,14 +34,14 @@ ou usar o Chromium do sistema).
 
 ```bash
 python3 build.py     # gera manual.html a partir do conteúdo em build.py
-python3 render.py    # abre manual.html no Chromium headless e exporta outputs/Tony_Tunado_Manual.pdf
+python3 render.py    # abre manual.html no Chromium headless e exporta outputs/Apex_Team_Manual.pdf
 ```
 
 `render.py` já usa `page.pdf(width="1123px", height="794px", print_background=True, margin=0)` :
 mesmas dimensões usadas no `.page` do CSS (proporção A4 paisagem). Se mudar o tamanho da página no
 CSS, ajuste as mesmas dimensões em `render.py`.
 
-O PDF é sempre escrito em `outputs/Tony_Tunado_Manual.pdf` (nome fixo). Cada execução de
+O PDF é sempre escrito em `outputs/Apex_Team_Manual.pdf` (nome fixo). Cada execução de
 `render.py` apaga o arquivo anterior antes de gerar o novo, então o PDF gerado sempre substitui
 o existente na pasta `outputs` — nunca cria versões numeradas ou duplicadas.
 

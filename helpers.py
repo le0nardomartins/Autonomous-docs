@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Reusable HTML/SVG building blocks for the Tony Tunado manual."""
+"""Reusable HTML/SVG building blocks for the Apex Team manual."""
 
 NAV = [
     ("sumario", "Sumário"),
@@ -12,8 +12,6 @@ NAV = [
     ("comunicacao", "Comunicação"),
     ("software", "Software"),
     ("pecas", "Peças Mecânicas"),
-    ("fmea", "FMEA"),
-    ("pert", "PERT / CPM"),
     ("dados", "Dados Técnicos"),
 ]
 

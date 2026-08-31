@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Custom technical diagrams (inline SVG) for the Tony Tunado manual."""
+"""Custom technical diagrams (inline SVG) for the Apex Team manual."""
 
 # Light palette — tuned to sit on the manual's white/paper page background
 # with a transparent panel (see .diagram-panel in style.css).
@@ -70,41 +70,45 @@ def architecture():
     s += _arrow(x_cam+118, y+bh/2, x_note, y+bh/2, "USB")
     s += _arrow(x_note+bw, y+bh/2, x_mega, y+bh/2, "Serial 115.200 bps")
 
-    # CAN bus fan-out to 6 ATmega328P modules
+    # CAN bus fan-out to 4 ATmega328P modules
     bus_y = 168
-    bus_x1, bus_x2 = 120, 900
+    bus_x1, bus_x2 = 120, 760
     s += _arrow(x_mega+bw/2, y+bh, x_mega+bw/2, bus_y, "CAN 2.0B / J1939 · 250 kbps")
     s += f'<line x1="{bus_x1}" y1="{bus_y}" x2="{bus_x2}" y2="{bus_y}" stroke="{BLUE}" stroke-width="2"/>'
     s += f'<circle cx="{bus_x1}" cy="{bus_y}" r="3" fill="{BLUE}"/><circle cx="{bus_x2}" cy="{bus_y}" r="3" fill="{BLUE}"/>'
 
     modules = [
-        ("PCB Motores\nTraseiros", "0x10", 120),
-        ("PCB Motores\nDianteiros", "0x11", 262),
-        ("PCB Sinalização", "0x20", 404),
-        ("PCB Encoders", "0x30", 546),
-        ("PCB Ultrassônicos", "0x40", 688),
-        ("PCB BMS", "0x50", 830),
+        ("PCB Motores\nLado Direito", 120),
+        ("PCB Motores\nLado Esquerdo", 294),
+        ("PCB Sinalização", 468),
+        ("PCB BMS", 642),
     ]
     mw, mh = 118, 54
     my = 210
-    for label, addr, mx in modules:
+    for label, mx in modules:
         s += _vline(mx+mw/2, bus_y, my)
         s += f'<circle cx="{mx+mw/2}" cy="{bus_y}" r="2.6" fill="{BLUE}"/>'
-        lab = label.replace("\n", "<tspan-break/>")
         parts = label.split("\n")
         box = f'<rect x="{mx}" y="{my}" width="{mw}" height="{mh}" rx="6" fill="{NODE_FILL}" stroke="{BORDER}" stroke-width="1.3"/>'
-        ty = my + (mh/2 - 4) if len(parts) > 1 else my + mh/2 + 4
         for i, p in enumerate(parts):
             box += f'<text x="{mx+mw/2}" y="{my+22+i*13}" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11" fill="{INK}">{p}</text>'
-        box += f'<text x="{mx+mw/2}" y="{my+mh-8}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="{BLUE}">SA {addr}</text>'
+        box += f'<text x="{mx+mw/2}" y="{my+mh-8}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="{BLUE}">ATmega328P</text>'
         s += box
 
-    # bottom row: physical actuators/sensors driven by the six modules
+    # ATmega328P dedicado: camada de segurança independente, fora do barramento CAN
+    ux = 860
+    s += f'<path d="M {x_mega+bw} {y+bh/2} H {ux+mw/2} V {my}" fill="none" stroke="{INK_DIM}" stroke-width="1.6" stroke-dasharray="4,3" marker-end="url(#arrow)"/>'
+    s += f'<text x="{(x_mega+bw+ux+mw/2)/2}" y="{y+bh/2-8}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="{INK_DIM}">Serial1 · PARE/PROSSIGA</text>'
+    box = f'<rect x="{ux}" y="{my}" width="{mw}" height="{mh}" rx="6" fill="{NODE_FILL}" stroke="{BORDER}" stroke-width="1.3"/>'
+    box += f'<text x="{ux+mw/2}" y="{my+22}" text-anchor="middle" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="11" fill="{INK}">ATmega328P</text>'
+    box += f'<text x="{ux+mw/2}" y="{my+mh-8}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="{BLUE}">3x HC-SR04</text>'
+    s += box
+
     return s
 
 def architecture_wrapper():
     from helpers import diagram
-    return diagram(architecture(), "ARQUITETURA GERAL DO SISTEMA · TONY TUNADO", viewbox="0 0 1000 300", height=230)
+    return diagram(architecture(), "ARQUITETURA GERAL DO SISTEMA", viewbox="0 0 1000 300", height=230)
 
 
 # ------------------------------------------------------------------ #
@@ -113,17 +117,15 @@ def architecture_wrapper():
 def atmega_modules():
     s = DEFS
     modules = [
-        ("PCB Motores Traseiros", "Controle de tração traseira – BTS7960", "0x10"),
-        ("PCB Motores Dianteiros", "Controle de tração dianteira – BTS7960", "0x11"),
-        ("PCB Sinalização", "LEDs RGB e lanternas", "0x20"),
-        ("PCB Encoders", "Leitura Hall + velocidade por roda", "0x30"),
-        ("PCB Ultrassônicos", "Leitura dos 4 HC-SR04", "0x40"),
-        ("PCB BMS", "Monitoramento da bateria", "0x50"),
+        ("PCB Motores Lado Direito", "Tração + encoder (Hall) do lado direito – BTS7960", "CAN"),
+        ("PCB Motores Lado Esquerdo", "Tração + encoder (Hall) do lado esquerdo – BTS7960", "CAN"),
+        ("PCB Sinalização", "LEDs RGB e lanternas", "CAN"),
+        ("PCB BMS", "Monitoramento da bateria", "CAN"),
     ]
     cols = 3
     cw, ch = 300, 92
     gx, gy = 26, 22
-    for i, (label, func, addr) in enumerate(modules):
+    for i, (label, func, link) in enumerate(modules):
         col = i % cols
         row = i // cols
         x = 20 + col*(cw+gx)
@@ -132,12 +134,12 @@ def atmega_modules():
         s += f'<rect x="{x}" y="{y}" width="4" height="{ch}" rx="2" fill="{BLUE}"/>'
         s += f'<text x="{x+18}" y="{y+26}" font-family="Barlow Semi Condensed, sans-serif" font-weight="700" font-size="13.5" fill="{INK}">{label}</text>'
         s += f'<text x="{x+18}" y="{y+47}" font-family="Inter, sans-serif" font-size="9.5" fill="{INK_DIM}">{func}</text>'
-        s += f'<text x="{x+18}" y="{y+ch-16}" font-family="JetBrains Mono, monospace" font-size="9" fill="{BLUE}">ATmega328P · SA {addr}</text>'
+        s += f'<text x="{x+18}" y="{y+ch-16}" font-family="JetBrains Mono, monospace" font-size="9" fill="{BLUE}">ATmega328P · {link}</text>'
     return s
 
 def atmega_modules_wrapper():
     from helpers import diagram
-    return diagram(atmega_modules(), "6 MÓDULOS ATMEGA328P DEDICADOS · MAPA DE FUNÇÕES", viewbox="0 0 966 240", height=220)
+    return diagram(atmega_modules(), "4 MÓDULOS ATMEGA328P DEDICADOS · MAPA DE FUNÇÕES", viewbox="0 0 966 240", height=220)
 
 
 # ------------------------------------------------------------------ #
@@ -147,17 +149,15 @@ def can_network():
     s = DEFS
     nodes = [
         ("Arduino Mega", "SA 0x01", "PGN 0xFEF1", True),
-        ("PCB Motores\nTraseiros", "SA 0x10", "PGN 0xFF00", False),
-        ("PCB Motores\nDianteiros", "SA 0x11", "PGN 0xFF00", False),
+        ("PCB Motores\nLado Direito", "SA 0x10", "PGN 0xFF00", False),
+        ("PCB Motores\nLado Esquerdo", "SA 0x11", "PGN 0xFF00", False),
         ("PCB Sinalização", "SA 0x20", "PGN 0xFF10", False),
-        ("PCB Encoders", "SA 0x30", "PGN 0xFF20", False),
-        ("PCB Ultrassônicos", "SA 0x40", "PGN 0xFF30", False),
         ("PCB BMS", "SA 0x50", "PGN 0xFF40", False),
     ]
     bw, bh = 128, 70
     top_y = 30
     bus_y = 150
-    spacing = 150
+    spacing = 225
     x_first = 110
     x_last = x_first + (len(nodes)-1)*spacing
     bus_x1, bus_x2 = x_first-50, x_last+50
@@ -193,7 +193,7 @@ def can_network():
 
 def can_network_wrapper():
     from helpers import diagram
-    return diagram(can_network(), "TOPOLOGIA DA REDE CAN J1939 · 7 NÓS", viewbox="0 0 1150 220", height=200)
+    return diagram(can_network(), "TOPOLOGIA DA REDE CAN J1939 · 5 NÓS", viewbox="0 0 1150 220", height=200)
 
 
 # ------------------------------------------------------------------ #

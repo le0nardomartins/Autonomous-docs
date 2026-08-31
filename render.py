@@ -5,7 +5,7 @@ from playwright.async_api import async_playwright
 BASE_DIR = Path(__file__).resolve().parent
 HTML_PATH = BASE_DIR / "manual.html"
 OUTPUT_DIR = BASE_DIR / "outputs"
-OUTPUT_PATH = OUTPUT_DIR / "Tony_Tunado_Manual.pdf"
+OUTPUT_PATH = OUTPUT_DIR / "Apex_Team_Manual.pdf"
 
 async def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
